@@ -70,6 +70,21 @@
     const translateState = true;
     let userId = null;
 
+    //slider vars
+
+    const slider = document.querySelector('.prize__slider');
+    const items = slider.querySelectorAll('.prize__slide');
+    const dots = document.querySelectorAll('.prize__nav-dots-item');
+    const btnLeft = document.querySelector('.prize__nav-left');
+    const btnRight = document.querySelector('.prize__nav-right');
+
+    let currentIndex = 0;
+    const totalItems = items.length;
+    let isDragging = false;
+    let startX = 0;
+
+    //slider vars
+
     const request = function (link, extraOptions) {
         return fetch(apiURL + link, {
             headers: {
@@ -120,7 +135,23 @@
         }
 
         function quickCheckAndRender() {
-            checkUserAuth();
+            // checkUserAuth();
+
+            updateSlider();
+
+            slider.addEventListener('mousedown', handleStart);
+            slider.addEventListener('mousemove', handleMove);
+            slider.addEventListener('mouseup', handleEnd);
+            slider.addEventListener('mouseleave', handleEnd);
+
+            slider.addEventListener('touchstart', handleStart);
+            slider.addEventListener('touchmove', handleMove);
+            slider.addEventListener('touchend', handleEnd);
+
+            btnLeft.addEventListener('click', () => moveSlider(-1));
+            btnRight.addEventListener('click', () => moveSlider(1));
+            dots.forEach((dot, index) => dot.addEventListener('click', () => goToSlide(index)));
+
 
         }
 
@@ -366,7 +397,75 @@
 
             });
     }
+    function updateSlider() {
+        items.forEach((item, index) => {
+            const distance = index - currentIndex;
+            let newPosition = distance * 105;
 
-    // loadTranslations().then(init) запуск ініту сторінки
+            if (distance > totalItems / 2) {
+                newPosition -= totalItems * 105;
+            } else if (distance < -totalItems / 2) {
+                newPosition += totalItems * 105;
+            }
+
+            const scale = index === currentIndex ? 1 : 1;
+
+            item.style.transform = `translateX(${newPosition}%) scale(${scale})`;
+            item.style.zIndex = index === currentIndex ? 2 : 1;
+
+            const isVisible = Math.abs(distance) <= 1 ||
+                (index === 0 && currentIndex === totalItems - 1) ||
+                (index === totalItems - 1 && currentIndex === 0);
+
+            item.classList.toggle('hidden', !isVisible);
+            item.classList.toggle('active', index === currentIndex);
+
+            item.classList.remove('left-slide', 'right-slide');
+            if (distance === 1 || (currentIndex === totalItems - 1 && index === 0)) {
+                item.classList.add('right-slide');
+            } else if (distance === -1 || (currentIndex === 0 && index === totalItems - 1)) {
+                item.classList.add('left-slide');
+            }
+        });
+
+        dots.forEach(dot => dot.classList.remove('_active'));
+        if (dots[currentIndex]) {
+            dots[currentIndex].classList.add('_active');
+        }
+    }
+
+    function moveSlider(offset) {
+        currentIndex = (currentIndex + offset + totalItems) % totalItems;
+        updateSlider();
+    }
+
+    function goToSlide(index) {
+        currentIndex = index;
+        updateSlider();
+    }
+
+    function handleStart(event) {
+        isDragging = true;
+        startX = event.clientX || event.touches[0].clientX;
+    }
+
+    function handleMove(event) {
+        if (!isDragging) return;
+        const currentX = event.clientX || event.touches[0].clientX;
+        const diffX = currentX - startX;
+
+        if (Math.abs(diffX) > 50) {
+            moveSlider(diffX > 0 ? -1 : 1);
+            isDragging = false;
+        }
+    }
+
+    function handleEnd() {
+        isDragging = false;
+    }
+
+    // loadTranslations().then(init)
+
+    init()
 
 })();

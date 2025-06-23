@@ -2,10 +2,227 @@
 .fav-page.loading
     .spinner-overlay
         .spinner
+    .welcome
+        .welcome__wrap
+            .welcome__img
+                picture
+                    source(media="(max-width: 600px)" srcset='img/welcome/pers-mob.png')
+                    source(media="(max-width: 950px) and (max-width: 600px) and (orientation: landscape)" srcset='img/welcome/pers-mob.png')
+                    img(src="img/welcome/pers-desc.png" alt="Favbet")
+            a(href='/login' data-translate="authBtn").welcome__btn.btn.unauth-msg авторизуйся
+            button(data-translate="takePart").welcome__btn.btn.hide.part-btn взяти участь
+            a(href='#' data-translate="makeDeposit").welcome__btn.btn.hide.btn-join депозит
+            .welcome__date(data-translate="welcomeDate") Період проведення акції з 07.07.2025 до 03.08.2025.
+        .welcome__bottom(data-translate="welcomeBottom") Протягом 4 тижнів бери участь в акції «Увімкни чіл» від FAVBET та отримуй можливість виграти частину з призового фонду в 10 000 000 гривень, 100 000 фріспінів та інших крутих фізичних призів.
+        .welcome__popup.popup-btn(data-translate="popupBtn") #[span Детальніше ]
+    .challange
+        .challange__title.title(data-translate="challangeTitle") Щоденний Челендж від Сема
+        .challange__subtitle(data-translate="challangeSubtitle") Щодня роби депозити загальною сумою від 1000 ₴ та відкривай картки з призами.
+        .challange__info(data-translate="challangeInfo") 1 день  -  #[span 1 спроба]
+        .challange__popup.popup-btn(data-translate="popupBtn") #[span Детальніше ]
+        .challange__wrap
+            .challange__left
+                .challange__frame
+                    .challange__current._unauth
+                        .challange__current-item._active
+                            picture
+                                source(media="(max-width: 600px)" srcset='img/challange/card-1/card-mob.jpg')
+                                source(media="(max-width: 950px) and (max-width: 600px) and (orientation: landscape)" srcset='img/challange/card-1/card-mob.jpg')
+                                img(src="img/challange/card-1/card-desc.jpg" alt="Favbet")
+                        .challange__current-item
+                            picture
+                                source(media="(max-width: 600px)" srcset='img/challange/card-2/card-mob.jpg')
+                                source(media="(max-width: 950px) and (max-width: 600px) and (orientation: landscape)" srcset='img/challange/card-2/card-mob.jpg')
+                                img(src="img/challange/card-2/card-desc.jpg" alt="Favbet")
+                        .challange__current-item
+                            picture
+                                source(media="(max-width: 600px)" srcset='img/challange/card-3/card-mob.jpg')
+                                source(media="(max-width: 950px) and (max-width: 600px) and (orientation: landscape)" srcset='img/challange/card-3/card-mob.jpg')
+                                img(src="img/challange/card-3/card-desc.jpg" alt="Favbet")
+                        .challange__current-item
+                            picture
+                                source(media="(max-width: 600px)" srcset='img/challange/card-4/card-mob.jpg')
+                                source(media="(max-width: 950px) and (max-width: 600px) and (orientation: landscape)" srcset='img/challange/card-4/card-mob.jpg')
+                                img(src="img/challange/card-4/card-desc.jpg" alt="Favbet")
+                        .challange__current-item
+                            picture
+                                source(media="(max-width: 600px)" srcset='img/challange/card-5/card-mob.jpg')
+                                source(media="(max-width: 950px) and (max-width: 600px) and (orientation: landscape)" srcset='img/challange/card-5/card-mob.jpg')
+                                img(src="img/challange/card-5/card-desc.jpg" alt="Favbet")
+                        .challange__current-item
+                            picture
+                                source(media="(max-width: 600px)" srcset='img/challange/card-6/card-mob.jpg')
+                                source(media="(max-width: 950px) and (max-width: 600px) and (orientation: landscape)" srcset='img/challange/card-6/card-mob.jpg')
+                                img(src="img/challange/card-6/card-desc.jpg" alt="Favbet")
+                        .challange__current-item
+                            picture
+                                source(media="(max-width: 600px)" srcset='img/challange/card-7/card-mob.jpg')
+                                source(media="(max-width: 950px) and (max-width: 600px) and (orientation: landscape)" srcset='img/challange/card-7/card-mob.jpg')
+                                img(src="img/challange/card-7/card-desc.jpg" alt="Favbet")
+
+
+                        .challange__progress
+                            .challange__progress-wrap
+                                .challange__progress-bar
+                            .challange__progress-box._lock
+                        .challange__blur
+                            .challange__blur-status 10%
+
+                .challange__tabs
+                    .challange__tabs-item._active._open
+                        .challange__tabs-day(data-translate="Monday") Пн
+                        ._lock
+                            img(src="img/challange/card-1/tab-lock.png" alt="Favbet")
+                        ._open
+                            img(src="img/challange/card-1/tab-open.png" alt="Favbet")
+                    .challange__tabs-item._lock
+                        .challange__tabs-day(data-translate="Tuesday") Вт
+                        ._lock
+                            img(src="img/challange/card-2/tab-lock.png" alt="Favbet")
+                        ._open
+                            img(src="img/challange/card-2/tab-open.png" alt="Favbet")
+                    .challange__tabs-item._lock
+                        .challange__tabs-day(data-translate="Wednesday") Ср
+                        ._lock
+                            img(src="img/challange/card-3/tab-lock.png" alt="Favbet")
+                        ._open
+                            img(src="img/challange/card-3/tab-open.png" alt="Favbet")
+                    .challange__tabs-item._lock
+                        .challange__tabs-day(data-translate="Thursday") Чт
+                        ._lock
+                            img(src="img/challange/card-4/tab-lock.png" alt="Favbet")
+                        ._open
+                            img(src="img/challange/card-4/tab-open.png" alt="Favbet")
+                    .challange__tabs-item._lock
+                        .challange__tabs-day(data-translate="Friday") Пт
+                        ._lock
+                            img(src="img/challange/card-5/tab-lock.png" alt="Favbet")
+                        ._open
+                            img(src="img/challange/card-5/tab-open.png" alt="Favbet")
+                    .challange__tabs-item._lock
+                        .challange__tabs-day(data-translate="Saturday") Сб
+                        ._lock
+                            img(src="img/challange/card-6/tab-lock.png" alt="Favbet")
+                        ._open
+                            img(src="img/challange/card-6/tab-open.png" alt="Favbet")
+                    .challange__tabs-item._lock
+                        .challange__tabs-day(data-translate="Sunday") Нд
+                        ._lock
+                            img(src="img/challange/card-7/tab-lock.png" alt="Favbet")
+                        ._open
+                            img(src="img/challange/card-7/tab-open.png" alt="Favbet")
+
+            .challange__right
+                .challange__deposit
+                    .challange__deposit-title(data-translate="depositAmountTitle") Загальна сума депозитів за добу
+                    .challange__deposit-amount #[span 0 ] #[span(data-translate="depositAmount") /1000 грн.]
+                    .challange__deposit-last
+                        .challange__deposit-last-item(data-translate="lastUpd") Останнє оновлення:
+                        .challange__deposit-last-item.last-upd 23:34
+
+
+                a(href='/login' data-translate="authBtn").challange__btn.btn.unauth-msg авторизуйся
+                button(data-translate="takePart").challange__btn.btn.hide.part-btn взяти участь
+                a(href='#' data-translate="makeDeposit").challange__btn.btn.hide.btn-join депозит
+        .challange__nav
+            .challange__nav-left
+            .challange__nav-dots
+                .challange__nav-dots-item._active
+                .challange__nav-dots-item
+                .challange__nav-dots-item
+                .challange__nav-dots-item
+                .challange__nav-dots-item
+                .challange__nav-dots-item
+                .challange__nav-dots-item
+            .challange__nav-right
+    .progress
+        .progress__left
+            .progress__title.subtitle(data-translate="progressTitle") Бонус від Сема + 200 FS
+            .progress__subtitle(data-translate="progressSubtitle") Щоб отримати додатковий бонус, відкривай картки 7 разів протягом тижня — з понеділка по неділю
+            .progress__days
+                .progress__days-item._active 14.07
+                .progress__days-item 14.07
+                .progress__days-item 14.07
+                .progress__days-item 14.07
+                .progress__days-item 14.07
+                .progress__days-item 14.07
+                .progress__days-item 14.07
+        .progress__right
+            img(src="img/progress/pers.png" alt="Favbet")
+
+    .drop
+        details.dropdown
+            summary(data-translate="mySpins") &#8203;
+            .drop-txt
+                .drop-txt-list.my-spins
+                    .spins-row
+                        .spins-row-head
+                            .content-date(data-translate="myBetDate") &#8203;
+                            .content-prize(data-translate="myBetId") &#8203;
+                            .content-status(data-translate="myBetStatus") &#8203;
+                        .spins-row-item
+                            .content-date 10.05
+                            .content-prize ID:388310247
+                            .content-status
+                        .spins-row-item
+                            .content-date 10.05
+                            .content-prize ID:388310247
+                            .content-status._done
+                    .no-spins.hide(data-translate="noBets") &#8203;
+    .prize
+        .prize__title.title(data-translate="prizeTitle") Призи від Сема
+        .prize__slider-wrap
+            .prize__slider
+                .prize__slide
+                    .prize__slide-title #[span.prize__title-text(data-translate="prizeIphone") iPhone 16 Pro Max (512 ГБ)] #[button.popup-prize]
+                    .prize__img
+                        img(src="img/prize/iphone.png" alt="favbet")
+
+
+                .prize__slide
+                    .prize__slide-title #[span.prize__title-text(data-translate="prizeIphone") iPhone 16 Pro Max (512 ГБ)] #[button.popup-prize]
+                    .prize__img
+                        img(src="img/prize/iphone.png" alt="favbet")
+                .prize__slide
+                    .prize__slide-title #[span.prize__title-text(data-translate="prizeIphone") iPhone 16 Pro Max (512 ГБ)] #[button.popup-prize]
+                    .prize__img
+                        img(src="img/prize/iphone.png" alt="favbet")
+                .prize__slide
+                    .prize__slide-title #[span.prize__title-text(data-translate="prizeIphone") iPhone 16 Pro Max (512 ГБ)] #[button.popup-prize]
+                    .prize__img
+                        img(src="img/prize/iphone.png" alt="favbet")
+
+
+        .prize__nav
+            .prize__nav-left
+            .prize__nav-dots
+                .prize__nav-dots-item._active
+                .prize__nav-dots-item
+                .prize__nav-dots-item
+                .prize__nav-dots-item
+                .prize__nav-dots-item
+                .prize__nav-dots-item
+                .prize__nav-dots-item
+                .prize__nav-dots-item
+                .prize__nav-dots-item
+                .prize__nav-dots-item
+                .prize__nav-dots-item
+                .prize__nav-dots-item
+                .prize__nav-dots-item
+                .prize__nav-dots-item
+                .prize__nav-dots-item
+                .prize__nav-dots-item
+                .prize__nav-dots-item
+            .prize__nav-right
     .table
+        .table__title.title(data-translate="tableTitle") Турнірна таблиця
+        .table__subtitle(data-translate="tableSubtitle") Встигни потрапити в лідери Турнірної таблиці та змагайся за призи
+        .table__prize-list.popup-btn(data-translate="tablePrizeList") Таблиця розподілу призів
         .table__tabs
-            .table__tabs-item.active(data-week="1") #[span(data-translate="tableTab") Faza] 1
-            .table__tabs-item(data-week="2") #[span(data-translate="tableTab") Faza] 2
+            .table__tabs-item.active(data-week="1") 1 #[span(data-translate="tableTab") тиждень]
+            .table__tabs-item(data-week="2") 2 #[span(data-translate="tableTab") тиждень]
+            .table__tabs-item(data-week="3") 3 #[span(data-translate="tableTab") тиждень]
+            .table__tabs-item(data-week="4") 4 #[span(data-translate="tableTab") тиждень]
         .table__head
             .table__row
                 .table__row-item(data-translate="tablePlace") [ MJESTO ]
@@ -82,6 +299,58 @@
 
     .drop
         details.dropdown
-            summary(data-translate="rulseBtn")
+            summary(data-translate="rulesBtnTable")
+            .drop-txt
+                .drop-txt-list(data-translate="rulesTable")
+    .games
+        .games__title.subtitle(data-translate="gamesTitle") Турнірні ігри
+        .games__list
+            .games__list-item
+                .games__list-item-img
+                    img(src="img/games/game1.png" alt="favbet")
+                a(href="#").games__list-item-btn грати
+            .games__list-item
+                .games__list-item-img
+                    img(src="img/games/game1.png" alt="favbet")
+                a(href="#").games__list-item-btn грати
+            .games__list-item
+                .games__list-item-img
+                    img(src="img/games/game1.png" alt="favbet")
+                a(href="#").games__list-item-btn грати
+            .games__list-item
+                .games__list-item-img
+                    img(src="img/games/game1.png" alt="favbet")
+                a(href="#").games__list-item-btn грати
+            .games__list-item
+                .games__list-item-img
+                    img(src="img/games/game1.png" alt="favbet")
+                a(href="#").games__list-item-btn грати
+            .games__list-item
+                .games__list-item-img
+                    img(src="img/games/game1.png" alt="favbet")
+                a(href="#").games__list-item-btn грати
+            .games__list-item
+                .games__list-item-img
+                    img(src="img/games/game1.png" alt="favbet")
+                a(href="#").games__list-item-btn грати
+            .games__list-item
+                .games__list-item-img
+                    img(src="img/games/game1.png" alt="favbet")
+                a(href="#").games__list-item-btn грати
+            .games__list-item
+                .games__list-item-img
+                    img(src="img/games/game1.png" alt="favbet")
+                a(href="#").games__list-item-btn грати
+            .games__list-item
+                .games__list-item-img
+                    img(src="img/games/game1.png" alt="favbet")
+                a(href="#").games__list-item-btn грати
+        a(href='/login' data-translate="authBtn").games__btn.btn-casino.unauth-msg авторизуйся
+        button.games__btn.btn-casino.hide.part-btn(data-translate="takePart") взяти участь
+        a(href='#' data-translate="makeDeposit").games__btn.btn-casino.hide.btn-join депозит
+
+    .drop
+        details.dropdown
+            summary(data-translate="rulesBtn")
             .drop-txt
                 .drop-txt-list(data-translate="rules")
