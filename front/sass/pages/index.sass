@@ -6,6 +6,7 @@ $dark-green: #003123
 $black: #1B1B1F
 $grey: #AEAEAE
 $bg-grad: linear-gradient(180deg, #5C3CB2 0%, #F3B37A 100%)
+$pink: #C776A0
 
 
 $font-suisse-intl-reg: SuisseIntl-Regular, sans-serif
@@ -15,7 +16,13 @@ $font-favbet-text-bold: FavbetText-Bold, sans-serif
 $font-yanone-kaffestaz-bold: YanoneKaffeesatz-Bold, sans-serif
 
 .hidden
-  display: none !important
+  //display: none !important
+  opacity: 0 !important
+
+.opacity-overlay
+  opacity: 0 !important
+  z-index: 0 !important
+  pointer-events: none !important
 
 //test
 .menu-btn
@@ -176,7 +183,7 @@ body
     align-items: center
     justify-content: center
     padding: 4px 8px
-    border: 1px solid #C776A0
+    border: 1px solid $pink
     background: rgba(65, 22, 83, 0.70)
     border-radius: 8px
     font-family: $font-favbet-text-reg
@@ -443,25 +450,37 @@ body
         opacity: 1
         background: $white
         color: #000
+  &--popup
+    margin-top: 50px
+    max-height: 150px
+    padding: 16px
+    background: url("../img/progress/bg-popup-desc.png") no-repeat 0 0/cover
+    background-size: 100% 100%
+    .progress
+      &__right
+        max-width: 150px
+        margin-left: 0
+        margin-bottom: 29px
+
 
 .prize
   display: flex
   flex-direction: column
   align-items: center
-  padding-bottom: 30px
+  padding: 30px 0
   &__slider
     display: flex
     align-items: center
     position: relative
-    min-width: 800px
-    max-width: 800px
+    min-width: 850px
+    max-width: 850px
     height: 400px
     &-wrap
       position: relative
-      overflow: hidden
+      //overflow: hidden
       margin-top: 15px
   &__img
-    margin-top: -30px
+    //margin-top: -30px
     z-index: 2
   &__slide
     position: absolute
@@ -471,25 +490,40 @@ body
     display: flex
     flex-direction: column
     align-items: center
+    min-height: 375px
+    max-height: 375px
+    transition: all .6s ease-in-out
     &-title
       color: $white
       font-family: $font-favbet-text-reg
       font-size: 17px
       background: rgba(65, 22, 83, 0.60)
-      border: 1px solid #C776A0
+      border: 1px solid $pink
       border-radius: 8px
       display: flex
       align-items: center
+      justify-content: center
+      text-align: center
       padding: 8px
       z-index: 3
+      position: absolute
+      top: 0
+      left: 50%
+      width: 100%
+      max-width: 225px
+      transform: translateX(-50%)
       .popup-prize
-        width: 16px
+        min-width: 16px
+        max-width: 16px
         height: 16px
         background: url("../img/popup-icon.png") no-repeat 0 0/contain
         border: none
         transition: opacity .3s ease-in-out
         opacity: .8
-        margin-left: 5px
+        transform: translate(50%, -50%)
+        position: absolute
+        right: 0
+        top: 50%
         &:hover
           cursor: pointer
           opacity: 1
@@ -527,6 +561,103 @@ body
         &._active
           opacity: 1
 // loader
+.popups
+  width: 100%
+  height: 100%
+  position: fixed
+  z-index: 10
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  background: rgba(0, 0, 0, 0.80)
+  backdrop-filter: blur(5px)
+  transition: opacity .5s ease-in-out
+.popup
+  min-width: 615px
+  max-width: 615px
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: flex-start
+  background: rgba(65, 22, 83, 0.60)
+  backdrop-filter: blur(3px)
+  padding: 32px 48px
+  //position: absolute
+  //left: 50%
+  //top: 30%
+  //transform: translate(-50%, -50%)
+  border: 1px solid $pink
+  border-radius: 8px
+  z-index: 4
+  &__wrap
+    max-width: 520px
+    margin-top: 15px
+    max-height: 370px
+    overflow: auto
+    &-txt
+      font-size: 17px
+      line-height: 22px
+      color: $white
+      font-family: $font-favbet-text-reg
+      strong
+        font-family: $font-favbet-text-bold
+      p
+        font-family: $font-favbet-text-reg
+        margin-bottom: 15px
+
+  &__text
+    color: $white
+    font-family: $font-favbet-text-reg
+    font-size: 17px
+    background: rgba(65, 22, 83, 0.60)
+    border: 1px solid $pink
+    border-radius: 8px
+    display: flex
+    align-items: center
+    justify-content: center
+    text-align: center
+    padding: 8px
+    z-index: 3
+    width: 100%
+    max-width: 265px
+
+    br
+      display: none
+
+    &--icon
+      position: relative
+      &::before
+        content: ""
+        display: block
+        position: absolute
+        left: 50%
+        top: 0
+        transform: translate(-50%, -80%)
+        width: 37px
+        height: 21px
+        background: url("../img/connect-icon.png") no-repeat 0 0/contain
+
+  &__img
+    max-width: 215px
+    margin-bottom: -10px
+
+  &__close
+    position: absolute
+    right: 0px
+    top: -50px
+    width: 40px
+    height: 40px
+    background: url("../img/close-icon.png") no-repeat 0 0/contain
+
+    &:hover
+      cursor: pointer
+
+  &__title
+    br
+      display: none
+// якщо є якісь специфічні стилі для заголовка, можеш додати тут
+
 
 .spinner-overlay
   position: absolute
@@ -556,24 +687,44 @@ body
   flex-direction: column
   align-items: center
   justify-content: flex-start
-  width: 405px
+  width: 620px
   min-height: 440px
   z-index: 1
+  &__subtitle
+    color: $white
+    text-align: center
+    font-size: 17px
+    font-family: $font-favbet-text-reg
+    margin-bottom: 10px
   &__tabs
     display: flex
     align-items: center
     justify-content: center
     gap: 6px
+    margin-top: 10px
     margin-bottom: 20px
+    background: rgba(65, 22, 83, 0.60)
+    border: 1px solid $pink
+    border-radius: 8px
+    padding: 2px
     &-item
       display: flex
       justify-content: center
       align-items: center
-      font-size: 16px
+      font-family: $font-favbet-text-reg
+      font-size: 12px
+      padding: 6px
+      color: $white
+      border-radius: 6px
+      position: relative
+      text-decoration: underline dotted
+      gap: 3px
       &.active
-        background-color: $magenta
+        background-color: $pink
+        text-decoration: none
       &:hover
-        background: $magenta
+        background: $pink
+        cursor: pointer
       span
         font-family: inherit
         margin-right: .3em
@@ -638,6 +789,17 @@ body
     display: flex
     align-items: center
 
+.games
+  width: 620px
+  &__list
+    display: flex
+    align-items: center
+    flex-wrap: wrap
+    justify-content: center
+    gap: 20px
+    &-item
+      max-width: 104px
+      min-width: 104px
 
 .drop
   max-width: 605px
@@ -658,7 +820,8 @@ body
   summary
     list-style: none
     padding: 8px 15px
-    //font-family: $font-suisse-intl-reg
+    font-family: $font-favbet-text-reg
+    border: 1px solid $white
     font-size: 14px
     cursor: pointer
     background-size: 100% 100%
@@ -666,15 +829,16 @@ body
     align-items: center
     justify-content: space-between
     color: $white
+    border-radius: 8px
     @media screen and (max-width: 600px)
       font-size: 14px
       line-height: 22px
     &::before
       content: ""
       display: block
-      min-width: 20px
-      height: 12px
-      //background: url("../img/arrow-drop.png") no-repeat 0 0/contain
+      min-width: 24px
+      height: 24px
+      background: url("../img/arrow.png") no-repeat 0 0/contain
       order: 2
 
   &-txt

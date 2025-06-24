@@ -109,3 +109,31 @@
     false - не спрацює
     потрібна на випадок якщо треба працювати з фронтом але актуального контенту в адмінці ще немає
 
+
+
+
+атрибути виграшних поапів, потрібні для відкриття відповідних попапів
+
+prizeIphone
+prizeLaptop
+prizeAirpods
+prizeWatch
+prizeGift
+prize50Points
+prize50FsGateOlymp
+prize25FsLuckyPenny
+prize25FsCoinStrike
+prize40FsPirots3
+prize25FsSnoopDogg
+prize25FsBigBamboo
+prize10FsHitSlot
+prize30FsShinigCrown
+prize25FsLeBandit
+prize20FsLuckOfPanda
+
+
+якщо в openPopupByAttr передати другим аргументом true - тоді разом з попапом ще з'явиться блок з прогресом,
+це треба для попапів з призом
+
+
+

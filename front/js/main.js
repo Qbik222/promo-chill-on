@@ -78,7 +78,7 @@
     const btnLeft = document.querySelector('.prize__nav-left');
     const btnRight = document.querySelector('.prize__nav-right');
 
-    let currentIndex = 0;
+    let currentIndex = 1;
     const totalItems = items.length;
     let isDragging = false;
     let startX = 0;
@@ -137,6 +137,27 @@
         function quickCheckAndRender() {
             // checkUserAuth();
 
+            // openPopupByAttr("prizeLaptop", true)
+
+            document.querySelectorAll('.popup__close').forEach(closeBtn => {
+                closeBtn.addEventListener('click', closeAllPopups);
+            });
+
+            document.querySelectorAll('.popup-prize').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const popupAttr = btn.getAttribute('data-popup');
+                    openPopupByAttr(popupAttr);
+                });
+            });
+
+            document.querySelector('.popups').addEventListener('click', (e) => {
+                const openPopupEl = document.querySelector('.popup:not(.hide)');
+                if (openPopupEl && !openPopupEl.contains(e.target)) {
+                    closeAllPopups();
+                }
+            });
+
+
             updateSlider();
 
             slider.addEventListener('mousedown', handleStart);
@@ -150,7 +171,7 @@
 
             btnLeft.addEventListener('click', () => moveSlider(-1));
             btnRight.addEventListener('click', () => moveSlider(1));
-            dots.forEach((dot, index) => dot.addEventListener('click', () => goToSlide(index)));
+            // dots.forEach((dot, index) => dot.addEventListener('click', () => goToSlide(index)));
 
 
         }
@@ -463,6 +484,33 @@
     function handleEnd() {
         isDragging = false;
     }
+
+    function openPopupByAttr(popupAttr, isShowProgress = false) {
+        const allPopups = document.querySelectorAll('.popup');
+        allPopups.forEach(p => p.classList.add('hide'));
+
+        const targetPopup = document.querySelector(`.popup[data-popup="${popupAttr}"]`);
+        if (targetPopup) {
+            targetPopup.classList.remove('hide');
+            document.querySelector('.popups').classList.remove('opacity-overlay');
+        }
+
+        const progress = document.querySelector('.popups .progress');
+        if (progress) {
+            progress.classList.toggle('hide', !isShowProgress);
+        }
+    }
+
+
+    function closeAllPopups() {
+        document.querySelectorAll('.popup').forEach(p => p.classList.add('hide'));
+        document.querySelectorAll('.popups .progress').forEach(p => p.classList.add('hide'));
+        document.querySelector('.popups').classList.add('opacity-overlay');
+    }
+
+
+
+
 
     // loadTranslations().then(init)
 
