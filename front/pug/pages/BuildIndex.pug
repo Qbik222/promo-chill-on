@@ -14,12 +14,12 @@
             a(href='#' data-translate="makeDeposit").welcome__btn.btn.hide.btn-join депозит
             .welcome__date(data-translate="welcomeDate") Період проведення акції з 07.07.2025 до 03.08.2025.
         .welcome__bottom(data-translate="welcomeBottom") Протягом 4 тижнів бери участь в акції «Увімкни чіл» від FAVBET та отримуй можливість виграти частину з призового фонду в 10 000 000 гривень, 100 000 фріспінів та інших крутих фізичних призів.
-        .welcome__popup.popup-btn(data-translate="popupBtn") #[span Детальніше ]
+        .welcome__popup.popup-btn.open-btn(data-popup="infoPopup" data-translate="popupBtn") #[span Детальніше ]
     .challange
         .challange__title.title(data-translate="challangeTitle") Щоденний Челендж від Сема
         .challange__subtitle(data-translate="challangeSubtitle") Щодня роби депозити загальною сумою від 1000 ₴ та відкривай картки з призами.
         .challange__info(data-translate="challangeInfo") 1 день  -  #[span 1 спроба]
-        .challange__popup.popup-btn(data-translate="popupBtn") #[span Детальніше ]
+        .challange__popup.popup-btn.open-btn(data-popup="howTakePart" data-translate="popupBtn") #[span Детальніше ]
         .challange__wrap
             .challange__left
                 .challange__frame
@@ -157,99 +157,99 @@
                 .drop-txt-list.my-spins
                     .spins-row
                         .spins-row-head
-                            .content-date(data-translate="myBetDate") &#8203;
-                            .content-prize(data-translate="myBetId") &#8203;
-                            .content-status(data-translate="myBetStatus") &#8203;
+                            .content-date(data-translate="myBetDate") Дата
+                            .content-prize(data-translate="myBetId") Приз
                         .spins-row-item
                             .content-date 10.05
-                            .content-prize ID:388310247
-                            .content-status
+                            .content-prize Iphone 15 Pro
                         .spins-row-item
                             .content-date 10.05
-                            .content-prize ID:388310247
-                            .content-status._done
+                            .content-prize EcoFlow RIVER 2
+                        .spins-row-item
+                            .content-date 10.05
+                            .content-prize Без призу
                     .no-spins.hide(data-translate="noBets") &#8203;
     .prize
         .prize__title.title(data-translate="prizeTitle") Призи від Сема
         .prize__slider-wrap
             .prize__slider
                 .prize__slide
-                    .prize__slide-title #[span.prize__title-text(data-translate="prizeIphone") iPhone 16 Pro <br> Max (512 ГБ)] #[button.popup-prize(data-popup="iphoneInfo")]
+                    .prize__slide-title #[span.prize__title-text(data-translate="prizeIphone") iPhone 16 Pro <br> Max (512 ГБ)] #[button.popup-prize.open-btn(data-popup="iphoneInfo")]
                     .prize__img
                         img(src="img/prize/iphone.png" alt="favbet")
 
                 .prize__slide
-                    .prize__slide-title #[span.prize__title-text(data-translate="prizeLaptop") Ноутбук Apple MacBook Air 13.6" M2 2024] #[button.popup-prize(data-popup="laptopInfo")]
+                    .prize__slide-title #[span.prize__title-text(data-translate="prizeLaptop") Ноутбук Apple MacBook Air 13.6" M2 2024] #[button.popup-prize.open-btn(data-popup="laptopInfo")]
                     .prize__img
                         img(src="img/prize/laptop.png" alt="favbet")
 
                 .prize__slide
-                    .prize__slide-title #[span.prize__title-text(data-translate="prizeAirpods") Навушники Apple AirPods Pro (2-ге покоління)] #[button.popup-prize(data-popup="airpodsInfo")]
+                    .prize__slide-title #[span.prize__title-text(data-translate="prizeAirpods") Навушники Apple AirPods Pro (2-ге покоління)] #[button.popup-prize.open-btn(data-popup="airpodsInfo")]
                     .prize__img
                         img(src="img/prize/airpods.png" alt="favbet")
 
                 .prize__slide
-                    .prize__slide-title #[span.prize__title-text(data-translate="prizeWatch") Смарт-годинник Apple Watch Series 10] #[button.popup-prize(data-popup="smartWatchInfo")]
+                    .prize__slide-title #[span.prize__title-text(data-translate="prizeWatch") Смарт-годинник Apple Watch Series 10] #[button.popup-prize.open-btn(data-popup="smartWatchInfo")]
                     .prize__img
                         img(src="img/prize/smart-watch.png" alt="favbet")
 
                 .prize__slide
-                    .prize__slide-title #[span.prize__title-text(data-translate="prizeGift") Подарунковий сертифікат Rozetka 5000 грн] #[button.popup-prize(data-popup="giftInfo")]
+                    .prize__slide-title #[span.prize__title-text(data-translate="prizeGift") Подарунковий сертифікат Rozetka 5000 грн] #[button.popup-prize.open-btn(data-popup="giftInfo")]
                     .prize__img
                         img(src="img/prize/gift.png" alt="favbet")
 
                 .prize__slide
-                    .prize__slide-title #[span.prize__title-text(data-translate="prize50Points") + 50 ігрових балів в турнірну таблицю] #[button.popup-prize(data-popup="50PointsInfo")]
+                    .prize__slide-title #[span.prize__title-text(data-translate="prize50Points") + 50 ігрових балів в турнірну таблицю] #[button.popup-prize.open-btn(data-popup="50PointsInfo")]
                     .prize__img
                         img(src="img/prize/50points.png" alt="favbet")
 
                 .prize__slide
-                    .prize__slide-title #[span.prize__title-text(data-translate="prize50FsGateOlymp") 50 фс в Gates of Olympus Super Scatter] #[button.popup-prize(data-popup="50FsGateOlymp")]
+                    .prize__slide-title #[span.prize__title-text(data-translate="prize50FsGateOlymp") 50 фс в Gates of Olympus Super Scatter] #[button.popup-prize.open-btn(data-popup="50FsGateOlymp")]
                     .prize__img
                         img(src="img/prize/50fs.png" alt="favbet")
 
                 .prize__slide
-                    .prize__slide-title #[span.prize__title-text(data-translate="prize25FsLuckyPenny") 25 фс в Lucky Penny] #[button.popup-prize(data-popup="25FsLuckyPenny")]
+                    .prize__slide-title #[span.prize__title-text(data-translate="prize25FsLuckyPenny") 25 фс в Lucky Penny] #[button.popup-prize.open-btn(data-popup="25FsLuckyPenny")]
                     .prize__img
                         img(src="img/prize/25fs.png" alt="favbet")
 
                 .prize__slide
-                    .prize__slide-title #[span.prize__title-text(data-translate="prize25FsCoinStrike") 25 фс в Coin Strike: Hold and Win Power Chance] #[button.popup-prize(data-popup="25FsCoinStrike")]
+                    .prize__slide-title #[span.prize__title-text(data-translate="prize25FsCoinStrike") 25 фс в Coin Strike: Hold and Win Power Chance] #[button.popup-prize.open-btn(data-popup="25FsCoinStrike")]
                     .prize__img
                         img(src="img/prize/25fs.png" alt="favbet")
 
                 .prize__slide
-                    .prize__slide-title #[span.prize__title-text(data-translate="prize40FsPirots3") 40 фс в Pirots 3] #[button.popup-prize(data-popup="40FsPirots3")]
+                    .prize__slide-title #[span.prize__title-text(data-translate="prize40FsPirots3") 40 фс в Pirots 3] #[button.popup-prize.open-btn(data-popup="40FsPirots3")]
                     .prize__img
                         img(src="img/prize/40fs.png" alt="favbet")
 
                 .prize__slide
-                    .prize__slide-title #[span.prize__title-text(data-translate="prize25FsSnoopDogg") 25 фс в Snoop Dogg Dollars] #[button.popup-prize(data-popup="25FsSnoopDogg")]
+                    .prize__slide-title #[span.prize__title-text(data-translate="prize25FsSnoopDogg") 25 фс в Snoop Dogg Dollars] #[button.popup-prize.open-btn(data-popup="25FsSnoopDogg")]
                     .prize__img
                         img(src="img/prize/25fs.png" alt="favbet")
 
                 .prize__slide
-                    .prize__slide-title #[span.prize__title-text(data-translate="prize25FsBigBamboo") 25 фс в Big Bamboo] #[button.popup-prize(data-popup="25FsBigBamboo")]
+                    .prize__slide-title #[span.prize__title-text(data-translate="prize25FsBigBamboo") 25 фс в Big Bamboo] #[button.popup-prize.open-btn(data-popup="25FsBigBamboo")]
                     .prize__img
                         img(src="img/prize/25fs.png" alt="favbet")
 
                 .prize__slide
-                    .prize__slide-title #[span.prize__title-text(data-translate="prize10FsHitSlot") 10 фс в 2025 Hit Slot] #[button.popup-prize(data-popup="10FsHitSlot")]
+                    .prize__slide-title #[span.prize__title-text(data-translate="prize10FsHitSlot") 10 фс в 2025 Hit Slot] #[button.popup-prize.open-btn(data-popup="10FsHitSlot")]
                     .prize__img
                         img(src="img/prize/10fs.png" alt="favbet")
 
                 .prize__slide
-                    .prize__slide-title #[span.prize__title-text(data-translate="prize30FsShinigCrown") 30 фс в Shining Crown] #[button.popup-prize(data-popup="30FsShinigCrown")]
+                    .prize__slide-title #[span.prize__title-text(data-translate="prize30FsShinigCrown") 30 фс в Shining Crown] #[button.popup-prize.open-btn(data-popup="30FsShinigCrown")]
                     .prize__img
                         img(src="img/prize/30fs.png" alt="favbet")
 
                 .prize__slide
-                    .prize__slide-title #[span.prize__title-text(data-translate="prize25FsLeBandit") 25 фс в Le Bandit] #[button.popup-prize(data-popup="25FsLeBandit")]
+                    .prize__slide-title #[span.prize__title-text(data-translate="prize25FsLeBandit") 25 фс в Le Bandit] #[button.popup-prize.open-btn(data-popup="25FsLeBandit")]
                     .prize__img
                         img(src="img/prize/25fs.png" alt="favbet")
 
                 .prize__slide
-                    .prize__slide-title #[span.prize__title-text(data-translate="prize20FsLuckOfPanda") 20 фс в Luck Of Panda] #[button.popup-prize(data-popup="20FsLuckOfPanda")]
+                    .prize__slide-title #[span.prize__title-text(data-translate="prize20FsLuckOfPanda") 20 фс в Luck Of Panda] #[button.popup-prize.open-btn(data-popup="20FsLuckOfPanda")]
                     .prize__img
                         img(src="img/prize/20fs.png" alt="favbet")
 
@@ -276,7 +276,7 @@
     .table
         .table__title.title(data-translate="tableTitle") Турнірна таблиця
         .table__subtitle(data-translate="tableSubtitle") Встигни потрапити в лідери Турнірної таблиці та змагайся за призи
-        .table__prize-list.popup-btn(data-translate="tablePrizeList") Таблиця розподілу призів
+        .table__prize-list.popup-btn.open-btn(data-popup="tablePrizePopup" data-translate="tablePrizeList") Таблиця розподілу призів
         .table__tabs
             .table__tabs-item.active(data-week="1") 1 #[span(data-translate="tableTab") тиждень]
             .table__tabs-item(data-week="2") 2 #[span(data-translate="tableTab") тиждень]
@@ -284,83 +284,109 @@
             .table__tabs-item(data-week="4") 4 #[span(data-translate="tableTab") тиждень]
         .table__head
             .table__row
-                .table__row-item(data-translate="tablePlace") [ MJESTO ]
-                .table__row-item(data-translate="tableId") [ ID ]
-                .table__row-item(data-translate="tablePoints") [ BODOVI ]
-                .table__row-item(data-translate="tablePrize") [ NAGRADA ]
-        .table__body#table
-            .table__row.place1.you
-                .table__row-item 01 #[span.you(data-translate="you") ti]
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
-            .table__row.palce2
-                .table__row-item 02
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
-            .table__row.palce3
-                .table__row-item 03
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
+                .table__row-item(data-translate="place") Місце
+                .table__row-item(data-translate="userId") ID
+                .table__row-item(data-translate="points") Бали
+                .table__row-item(data-translate="prize") Приз
+                .table__row-item(data-translate="wager") Wager
+
+        .table__body
+            .table__row.place1
+                .table__row-item 1
+                .table__row-item 23334
+                .table__row-item 12003
+                .table__row-item 50 000 ЕГГЗ
+                .table__row-item x1
+            .table__row.place2
+                .table__row-item 2
+                .table__row-item 23334
+                .table__row-item 3242
+                .table__row-item 50 000 ЕГГЗ
+                .table__row-item x2
+            .table__row.place3
+                .table__row-item 3
+                .table__row-item 23334
+                .table__row-item 234
+                .table__row-item 50 000 ЕГГЗ
+                .table__row-item x3
             .table__row
-                .table__row-item 04
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
+                .table__row-item 4
+                .table__row-item 23334
+                .table__row-item 100
+                .table__row-item 50 000 ЕГГЗ
+                .table__row-item x3
             .table__row
-                .table__row-item 05
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
+                .table__row-item 5
+                .table__row-item 23334
+                .table__row-item 100
+                .table__row-item 50 000 ЕГГЗ
+                .table__row-item x3
             .table__row
-                .table__row-item 06
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
+                .table__row-item 6
+                .table__row-item 23334
+                .table__row-item 100
+                .table__row-item 50 000 ЕГГЗ
+                .table__row-item x3
             .table__row
-                .table__row-item 07
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
+                .table__row-item 7
+                .table__row-item 23334
+                .table__row-item 100
+                .table__row-item 50 000 ЕГГЗ
+                .table__row-item x3
             .table__row
-                .table__row-item 08
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
+                .table__row-item 8
+                .table__row-item 23334
+                .table__row-item 100
+                .table__row-item 50 000 ЕГГЗ
+                .table__row-item x3
             .table__row
-                .table__row-item 09
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
+                .table__row-item 9
+                .table__row-item 23334
+                .table__row-item 100
+                .table__row-item 50 000 ЕГГЗ
+                .table__row-item x3
             .table__row
                 .table__row-item 10
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
+                .table__row-item 23334
+                .table__row-item 100
+                .table__row-item 50 000 ЕГГЗ
+                .table__row-item x3
         .table__body#tableOther
             .table__row
-                .table__row-item 38
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
+                .table__row-item 24
+                .table__row-item 23334
+                .table__row-item 100
+                .table__row-item 50 000 ЕГГЗ
+                .table__row-item x3
             .table__row.you
-                .table__row-item 39 #[span.you(data-translate="you") ti]
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
+                .table__row-item 25 #[span.you ти]
+                .table__row-item 23334
+                .table__row-item 100
+                .table__row-item 50 000 ЕГГЗ
+                .table__row-item x3
             .table__row
-                .table__row-item 40
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
+                .table__row-item 26
+                .table__row-item 23334
+                .table__row-item 100
+                .table__row-item 50 000 ЕГГЗ
+                .table__row-item x3
 
     .drop
         details.dropdown
             summary(data-translate="rulesBtnTable") Як набирати бали в турнірну таблицю?
             .drop-txt
-                .drop-txt-list(data-translate="rulesTable")
+                .drop-txt-list(data-translate="rulesTable").
+                    1. Натисни кнопку «Взяти участь».
+                    Авторизуйся на акційній сторінці, натиснувши кнопку «Авторизуйся», або зареєструйся як користувач. Натисни кнопку «Взяти участь» на сторінці акції.
+                    2. Роби ставки на спортивні події на казино.
+                    З 23 жовтня по 19 листопада 2023 року роби ставки протягом 4-х акційних тижнів на спортивні події та крути слоти в казино у розділах Спорт, LIVE та Казино та заробляй по 1 балу за кожні 200 UAH.
+                    Ставки на спортивні події повинні бути від 200 UAH розраховані з результатом «Виграш» та з коефіцієнтом від 1.5 (ординар) або від 3.5 (експрес від 3 подій), без використання «CashOut» та «Повернення ставки».Ставки в розділі Казино повинні бути від 5 UAH.
+                    3. Отримуй бали та вигравай призи.
+                    Чим більше балів, тим більше шансів здобути приз.
+                    Бали нараховуватимуться та відображатимуться в таблиці «Результати». Після завершення кожного Акційного тижня перших 300 переможців, які наберуть найбільше балів, матимуть право на отримання бонусних призів.
+                    4. Накопичуй квитки та приймай участь у розіграші.Щотижня приймай участь в розіграші спортивних призів Акції.
+                    Квитки нараховуватимуться та відображатимуться в таблиці «Результати» за бали. Отримуй за кожні 5 балів по 1 квитку. Чим більше квитків, тим більше шансів виграти приз. Щотижня приймай участь в розіграші спортивних призів Акції. Розіграш буде проведено в онлайн-трансляцію на YouTube з посиланням на відео на сторінці Акції.
+                    Переможці розіграшу будуть опубліковані  в таблиці “Результати” протягом 72 годин після закінчення акційного тижня та відео розіграшу буде опубліковано на офіційному каналі платформи YouTube за посиланням https://www.youtube.com/@favbetua.
     .games
         .games__title.subtitle(data-translate="gamesTitle") Турнірні ігри
         .games__list
@@ -370,49 +396,64 @@
                 a(href="#").games__list-item-btn грати
             .games__list-item
                 .games__list-item-img
-                    img(src="img/games/game1.png" alt="favbet")
+                    img(src="img/games/game2.png" alt="favbet")
                 a(href="#").games__list-item-btn грати
             .games__list-item
                 .games__list-item-img
-                    img(src="img/games/game1.png" alt="favbet")
+                    img(src="img/games/game3.png" alt="favbet")
                 a(href="#").games__list-item-btn грати
             .games__list-item
                 .games__list-item-img
-                    img(src="img/games/game1.png" alt="favbet")
+                    img(src="img/games/game4.png" alt="favbet")
                 a(href="#").games__list-item-btn грати
             .games__list-item
                 .games__list-item-img
-                    img(src="img/games/game1.png" alt="favbet")
+                    img(src="img/games/game5.png" alt="favbet")
                 a(href="#").games__list-item-btn грати
             .games__list-item
                 .games__list-item-img
-                    img(src="img/games/game1.png" alt="favbet")
+                    img(src="img/games/game6.png" alt="favbet")
                 a(href="#").games__list-item-btn грати
             .games__list-item
                 .games__list-item-img
-                    img(src="img/games/game1.png" alt="favbet")
+                    img(src="img/games/game7.png" alt="favbet")
                 a(href="#").games__list-item-btn грати
             .games__list-item
                 .games__list-item-img
-                    img(src="img/games/game1.png" alt="favbet")
+                    img(src="img/games/game8.png" alt="favbet")
                 a(href="#").games__list-item-btn грати
             .games__list-item
                 .games__list-item-img
-                    img(src="img/games/game1.png" alt="favbet")
+                    img(src="img/games/game9.png" alt="favbet")
                 a(href="#").games__list-item-btn грати
             .games__list-item
                 .games__list-item-img
-                    img(src="img/games/game1.png" alt="favbet")
+                    img(src="img/games/game10.png" alt="favbet")
                 a(href="#").games__list-item-btn грати
-        a(href='/login' data-translate="authBtn").games__btn.btn-casino.unauth-msg авторизуйся
+        a(href='/login' data-translate="authBtn").games__btn.btn-casino.unauth-msg.hide авторизуйся
         button.games__btn.btn-casino.hide.part-btn(data-translate="takePart") взяти участь
-        a(href='#' data-translate="makeDeposit").games__btn.btn-casino.hide.btn-join депозит
-
+        a(href='#' data-translate="playCasino").games__btn.btn-casino.btn-join Грати в казино
     .drop
         details.dropdown
             summary(data-translate="rulesBtn") Детальні правила акції
             .drop-txt
-                .drop-txt-list(data-translate="rules")
+                .drop-txt-list(data-translate="rules").
+                    1. Натисни кнопку «Взяти участь».
+                    Авторизуйся на акційній сторінці, натиснувши кнопку «Авторизуйся», або зареєструйся як користувач. Натисни кнопку «Взяти участь» на сторінці акції.
+                    2. Роби ставки на спортивні події на казино.
+                    З 23 жовтня по 19 листопада 2023 року роби ставки протягом 4-х акційних тижнів на спортивні події та крути слоти в казино у розділах Спорт, LIVE та Казино та заробляй по 1 балу за кожні 200 UAH.
+                    Ставки на спортивні події повинні бути від 200 UAH розраховані з результатом «Виграш» та з коефіцієнтом від 1.5 (ординар) або від 3.5 (експрес від 3 подій), без використання «CashOut» та «Повернення ставки».Ставки в розділі Казино повинні бути від 5 UAH.
+                    3. Отримуй бали та вигравай призи.
+                    Чим більше балів, тим більше шансів здобути приз.
+                    Бали нараховуватимуться та відображатимуться в таблиці «Результати». Після завершення кожного Акційного тижня перших 300 переможців, які наберуть найбільше балів, матимуть право на отримання бонусних призів.
+                    4. Накопичуй квитки та приймай участь у розіграші.Щотижня приймай участь в розіграші спортивних призів Акції.
+                    Квитки нараховуватимуться та відображатимуться в таблиці «Результати» за бали. Отримуй за кожні 5 балів по 1 квитку. Чим більше квитків, тим більше шансів виграти приз. Щотижня приймай участь в розіграші спортивних призів Акції. Розіграш буде проведено в онлайн-трансляцію на YouTube з посиланням на відео на сторінці Акції.
+                    Переможці розіграшу будуть опубліковані  в таблиці “Результати” протягом 72 годин після закінчення акційного тижня та відео розіграшу буде опубліковано на офіційному каналі платформи YouTube за посиланням https://www.youtube.com/@favbetua.
+    .footer
+        picture
+            source(media="(max-width: 600px)" srcset='img/footer/bg-mob.png')
+            source(media="(max-width: 950px) and (max-width: 600px) and (orientation: landscape)" srcset='img/footer/bg-mob.png')
+            img(src="img/footer/bg-desc.png" alt="Favbet")
     .popups.opacity-overlay
         //.popup.hide(data-popup="prizeIphone")
         //    .popup__title.subtitle(data-translate="prizePopupTitle") Твій виграш
@@ -517,8 +558,85 @@
             .popup__wrap
                 .popup__wrap-txt(data-translate="popup20FsLuckOfPandaInfo") Тут інформація про фріспіни Luck Of Panda.
             .popup__close
+        .popup.hide(data-popup="howTakePart")
+            .popup__title.subtitle(data-translate="takePart") як взяти участь
+            .popup__wrap
+                .popup__wrap-txt(data-translate="takePartPopup")
+                    strong 1. Тицяй кнопку
+                    p Натисни кнопку «Взяти участь» один раз та грай протягом 4-х акційних тижнів. Роби ставки в акційних іграх в розділі “Казино”
+                    strong 2. Набирай бали
+                    p Заробляй бали та просувайся в турнірній таблиці. З 07.07.2025 по 03.08.2025 крути слоти в розділі «Казино» і заробляй бали. За кожен виграшний множник (сума виграшу, поділена на суму ставки) учасник отримує 1 ігровий бал. Мінімальна ставка в розділі Казино – від 5 ₴.
+                    strong 3. Роби депозит
+                    p Щоденно роби депозити на загальну суму від 1000 грн і отримай шанс виграти круті призи та бонуси.
+
+
+            .popup__close
+
+        .popup.hide(data-popup="infoPopup")
+            .popup__title.subtitle(data-translate="infoPopupTitle") як взяти участь
+            .popup__wrap
+                .popup__wrap-txt(data-translate="infoPopupText")
+                    strong 1. Тицяй кнопку
+                    p Натисни кнопку «Взяти участь» один раз та грай протягом 4-х акційних тижнів. Роби ставки в акційних іграх в розділі “Казино”
+                    strong 2. Набирай бали
+                    p Заробляй бали та просувайся в турнірній таблиці. З 07.07.2025 по 03.08.2025 крути слоти в розділі «Казино» і заробляй бали. За кожен виграшний множник (сума виграшу, поділена на суму ставки) учасник отримує 1 ігровий бал. Мінімальна ставка в розділі Казино – від 5 ₴.
+                    strong 3. Роби депозит
+                    p Щоденно роби депозити на загальну суму від 1000 грн і отримай шанс виграти круті призи та бонуси.
+            .popup__close
+
+        .popup.hide(data-popup="tablePrizePopup")
+            .popup__title.subtitle(data-translate="tablePrizeTitle") таблиця розподілу призів
+            .popup__wrap
+                .popup__table
+                    .popup__table-head
+                        .popup__table-head-column(data-translate="place") Місце
+                        .popup__table-head-column(data-translate="wager") Вейджер
+                        .popup__table-head-column(data-translate="prize") Приз
+                    .popup__table-body
+                        .popup__table-body-row
+                            .popup__table-body-item 1
+                            .popup__table-body-item x1
+                            .popup__table-body-item Iphone 15 Pro
+                        .popup__table-body-row
+                            .popup__table-body-item 2
+                            .popup__table-body-item x1
+                            .popup__table-body-item Iphone 15 Pro
+                        .popup__table-body-row
+                            .popup__table-body-item 3
+                            .popup__table-body-item x1
+                            .popup__table-body-item Iphone 15 Pro
+                        .popup__table-body-row
+                            .popup__table-body-item 4
+                            .popup__table-body-item x1
+                            .popup__table-body-item Iphone 15 Pro
+                        .popup__table-body-row
+                            .popup__table-body-item 5
+                            .popup__table-body-item x1
+                            .popup__table-body-item Iphone 15 Pro
+                        .popup__table-body-row
+                            .popup__table-body-item 6
+                            .popup__table-body-item x1
+                            .popup__table-body-item Iphone 15 Pro
+                        .popup__table-body-row
+                            .popup__table-body-item 7
+                            .popup__table-body-item x1
+                            .popup__table-body-item Iphone 15 Pro
+                        .popup__table-body-row
+                            .popup__table-body-item 8
+                            .popup__table-body-item x1
+                            .popup__table-body-item Iphone 15 Pro
+                        .popup__table-body-row
+                            .popup__table-body-item 9
+                            .popup__table-body-item x1
+                            .popup__table-body-item Iphone 15 Pro
+                        .popup__table-body-row
+                            .popup__table-body-item 10
+                            .popup__table-body-item x1
+                            .popup__table-body-item Iphone 15 Pro
+            .popup__close
 
         //- Виграшні попапи для всіх слайдів
+
         .popup.hide(data-popup="prizeIphone")
             .popup__title.subtitle(data-translate="prizePopupTitle") Твій виграш
             .popup__text(data-translate="prizeIphone") iPhone 16 Pro <br> Max (512 ГБ)
@@ -646,6 +764,8 @@
                 img(src="img/prize/popup/20fs.png" alt="favbet")
             .popup__text.popup__text--icon(data-translate="popupConnectText") Наша команда звʼяжеться з тобою для уточнення всіх деталей.
             .popup__close
+
+        //- Виграшні попапи для всіх слайдів
         .progress.progress--popup
             .progress__left
                 .progress__title.subtitle(data-translate="progressTitle") Бонус від Сема + 200 FS

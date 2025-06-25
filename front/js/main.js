@@ -143,7 +143,7 @@
                 closeBtn.addEventListener('click', closeAllPopups);
             });
 
-            document.querySelectorAll('.popup-prize').forEach(btn => {
+            document.querySelectorAll('.open-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const popupAttr = btn.getAttribute('data-popup');
                     openPopupByAttr(popupAttr);
