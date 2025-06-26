@@ -62,13 +62,16 @@
     if (ukLeng) locale = 'uk';
     if (enLeng) locale = 'en';
 
-    let debug = true
+    let debug = false
 
     if (debug) hideLoader()
 
     let i18nData = {};
     const translateState = true;
     let userId = null;
+
+    const box = document.querySelector('.shake-box');
+    const initialDelay = Math.random() * 6000 + 4000;
 
     //slider vars
 
@@ -139,7 +142,11 @@
 
             // openPopupByAttr("prizeLaptop", true)
 
+            setTimeout(hideLoader, 1000);
+
             SetSliderWidthBlur()
+
+            setTimeout(triggerShake, initialDelay);
 
             document.querySelectorAll('.popup__close').forEach(closeBtn => {
                 closeBtn.addEventListener('click', closeAllPopups);
@@ -559,7 +566,15 @@
         document.querySelector('.popups').classList.add('opacity-overlay');
     }
 
+    function triggerShake() {
+        box.classList.add('shake');
 
+        setTimeout(() => {
+            box.classList.remove('shake');
+            const nextShake = Math.random() * 6000 + 4000;
+            setTimeout(triggerShake, nextShake);
+        }, 1200);
+    }
 
 
 

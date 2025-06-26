@@ -177,6 +177,8 @@ body
   max-width: 1240px
   padding-bottom: 25px
   z-index: 2
+  position: relative
+  overflow: hidden
   &__wrap
     display: flex
     flex-direction: column
@@ -185,12 +187,15 @@ body
     width: 100%
     height: 680px
     background: url("../img/welcome/bg-desc.jpg") no-repeat 50% 0/contain
+    @media screen and (max-width: 770px)
+      background: url("../img/welcome/bg-tab.jpg") no-repeat 50% 0/contain
     @media screen and (max-width: 600px)
       background: url("../img/welcome/bg-mob.jpg") no-repeat 50% 0/contain
     @media screen and (max-width: 950px) and (max-height: 450px) and (orientation: landscape)
       background: url("../img/welcome/bg-desc.jpg") no-repeat 50% 100%/cover
   &__img
     max-width: 555px
+    z-index: 2
   &__date
     color: $white
     font-family: $font-favbet-text-reg
@@ -206,6 +211,28 @@ body
     margin-top: 40px
   &__popup
     margin-top: 15px
+  &__tree
+    width: 100%
+    height: 100%
+    pointer-events: none
+    position: absolute
+    &-left
+      width: 480px
+      height: 1040px
+      background: url("../img/welcome/tree-left.png") no-repeat 0 0/contain
+      position: absolute
+      left: -150px
+      top: -110px
+      animation: sway 5.4s ease-in-out infinite
+    &-right
+      width: 435px
+      height: 736px
+      background: url("../img/welcome/tree-right.png") no-repeat 0 0/contain
+      position: absolute
+      right: -220px
+      top: -40px
+      animation: sway 6.4s ease-in-out infinite
+
 
 .challange
   display: flex
@@ -1021,6 +1048,58 @@ body
   min-width: 1250px
   margin-top: -200px
   pointer-events: none
+  position: relative
+  &__tree
+    width: 100%
+    height: 100%
+    pointer-events: none
+    position: absolute
+    left: 50%
+    transform: translate(-50%, -50%)
+    top: 50%
+    display: flex
+    align-items: center
+    justify-content: space-between
+    overflow: hidden
+    &-left, &-right
+      position: relative
+      height: 100%
+      width: 50%
+    &-left
+      &-item
+        position: absolute
+        &:nth-child(1)
+          background: url("../img/footer/tree-left-1.png") no-repeat 0 0/contain
+          width: 265px
+          height: 574px
+          left: -100px
+          top: 120px
+          animation: sway 5.5s ease-in-out infinite
+        &:nth-child(2)
+          background: url("../img/footer/tree-left-2.png") no-repeat 0 0/contain
+          width: 170px
+          height: 290px
+          left: -55px
+          top: 300px
+          animation: sway 6.5s ease-in-out infinite
+    &-right
+      &-item
+        position: absolute
+        &:nth-child(1)
+          background: url("../img/footer/tree-right-1.png") no-repeat 0 0/contain
+          width: 365px
+          height: 674px
+          right: -150px
+          top: 90px
+          animation: sway 5.5s ease-in-out infinite
+        &:nth-child(2)
+          background: url("../img/footer/tree-right-2.png") no-repeat 0 0/contain
+          width: 190px
+          height: 400px
+          right: -55px
+          top: 300px
+          animation: sway 6.5s ease-in-out infinite
+
 
 .tree
   pointer-events: none
@@ -1311,3 +1390,21 @@ body.dark
     transform: rotate(-2deg)
   100%
     transform: rotate(0deg)
+
+.shake-box
+  display: inline-block
+
+@keyframes shake
+  0%, 100%
+    transform: translate(0, 0) rotate(0deg)
+  20%
+    transform: translate(-3px, 0) rotate(-4deg)
+  40%
+    transform: translate(3px, 0) rotate(4deg)
+  60%
+    transform: translate(-3px, 0) rotate(-4deg)
+  80%
+    transform: translate(3px, 0) rotate(4deg)
+
+.shake
+  animation: shake 1.2s
