@@ -139,6 +139,8 @@
 
             // openPopupByAttr("prizeLaptop", true)
 
+            SetSliderWidthBlur()
+
             document.querySelectorAll('.popup__close').forEach(closeBtn => {
                 closeBtn.addEventListener('click', closeAllPopups);
             });
@@ -210,6 +212,55 @@
             });
     }
 
+
+    function SetSliderWidthBlur(){
+        const slider = document.querySelector('.challange__current');
+        const slides = slider.querySelectorAll('.challange__current-item');
+        const tabs = document.querySelectorAll('.challange__tabs-item');
+        const dots = document.querySelectorAll('.challange__nav-dots-item');
+        const btnLeft = document.querySelector('.challange__nav-left');
+        const btnRight = document.querySelector('.challange__nav-right');
+
+        let currentIndex = 0;
+
+        function updateSlider(index) {
+            slides.forEach(slide => slide.classList.remove('_active'));
+            tabs.forEach(tab => tab.classList.remove('_active'));
+            dots.forEach(dot => dot.classList.remove('_active'));
+
+            slides[index].classList.add('_active');
+            tabs[index].classList.add('_active');
+            dots[index].classList.add('_active');
+        }
+
+        function moveLeft() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateSlider(currentIndex);
+        }
+
+        function moveRight() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlider(currentIndex);
+        }
+
+        btnLeft.addEventListener('click', moveLeft);
+        btnRight.addEventListener('click', moveRight);
+
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => {
+                currentIndex = index;
+                updateSlider(currentIndex);
+            });
+        });
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentIndex = index;
+                updateSlider(currentIndex);
+            });
+        });
+
+    }
 
     function checkUserAuth() {
         const loadTime = 200;
