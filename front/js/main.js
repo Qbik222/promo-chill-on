@@ -43,7 +43,8 @@
         unauthMsgs = document.querySelectorAll('.unauth-msg'),
         participateBtns = document.querySelectorAll('.part-btn'),
         redirectBtns = document.querySelectorAll('.btn-join'),
-        loader = document.querySelector(".spinner-overlay")
+        loader = document.querySelector(".spinner-overlay"),
+        currentCardsWrap = document.querySelector('.challange__current');
 
     const ukLeng = document.querySelector('#ukLeng');
     const enLeng = document.querySelector('#enLeng');
