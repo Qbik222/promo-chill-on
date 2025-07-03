@@ -33,10 +33,23 @@
         return activeWeekIndex;
     };
 
-    const promoStartDate = new Date("2025-05-05T00:00:00");
-    const weekDuration = 10;
+    const promoStartDate = new Date("2025-07-14T00:00:00");
+    const weekDuration = 7;
 
     const activeWeek = getActiveWeek(promoStartDate, weekDuration) || 1;
+
+    console.log(activeWeek)
+
+    document.querySelectorAll('.games__list').forEach(list => {
+        list.classList.add('hide');
+    });
+
+    const currentList = document.querySelector(`.games__list._week${activeWeek}`);
+
+    console.log(currentList);
+    if (currentList) {
+        currentList.classList.remove('hide');
+    }
 
 
     const mainPage = document.querySelector(".fav-page"),
@@ -58,7 +71,8 @@
 
     let loaderBtn = false
 
-    let locale = "en"
+    // let locale = "en"
+    let locale = sessionStorage.getItem("locale") || "en"
 
     if (ukLeng) locale = 'uk';
     if (enLeng) locale = 'en';
@@ -69,9 +83,10 @@
 
     let i18nData = {};
     const translateState = true;
-    let userId = null;
+    // let userId = null;
+    let userId = Number(sessionStorage.getItem("userId")) ?? null
 
-    userId = 100300268
+    // userId = 100300268
 
     const box = document.querySelector('.shake-box');
     const initialDelay = Math.random() * 6000 + 4000;
@@ -550,21 +565,21 @@
         isDragging = false;
     }
 
-    function openPopupByAttr(popupAttr, isShowProgress = false) {
-        const allPopups = document.querySelectorAll('.popup');
-        allPopups.forEach(p => p.classList.add('hide'));
-
-        const targetPopup = document.querySelector(`.popup[data-popup="${popupAttr}"]`);
-        if (targetPopup) {
-            targetPopup.classList.remove('hide');
-            document.querySelector('.popups').classList.remove('opacity-overlay');
-        }
-
-        const progress = document.querySelector('.popups .progress');
-        if (progress) {
-            progress.classList.toggle('hide', !isShowProgress);
-        }
-    }
+    // function openPopupByAttr(popupAttr, isShowProgress = false) {
+    //     const allPopups = document.querySelectorAll('.popup');
+    //     allPopups.forEach(p => p.classList.add('hide'));
+    //
+    //     const targetPopup = document.querySelector(`.popup[data-popup="${popupAttr}"]`);
+    //     if (targetPopup) {
+    //         targetPopup.classList.remove('hide');
+    //         document.querySelector('.popups').classList.remove('opacity-overlay');
+    //     }
+    //
+    //     const progress = document.querySelector('.popups .progress');
+    //     if (progress) {
+    //         progress.classList.toggle('hide', !isShowProgress);
+    //     }
+    // }
 
 
     function closeAllPopups() {
@@ -589,4 +604,62 @@
 
     // init()
 
+
+    /// TEST
+
+    document.querySelectorAll('.menu-test__btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            btn.parentElement.classList.toggle('open');
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelector(".menu-btn")?.addEventListener("click", () => {
+            document.querySelector(".menu-test")?.classList.toggle("hide");
+        });
+    });
+
+    const lngBtn = document.querySelector(".lng-btn")
+
+    lngBtn.addEventListener("click", () => {
+        if (sessionStorage.getItem("locale")) {
+            sessionStorage.removeItem("locale");
+        } else {
+            sessionStorage.setItem("locale", "uk");
+        }
+        window.location.reload();
+    });
+
+    const authBtn = document.querySelector(".auth-btn")
+    const betBtn = document.querySelector(".btn-bet-online")
+
+    authBtn.addEventListener("click", () =>{
+        if(userId){
+            sessionStorage.removeItem("userId")
+        }else{
+            sessionStorage.setItem("userId", "777777")
+        }
+        window.location.reload()
+    });
+
+
 })();
+
+// цю функцію видали, а основну розкоменти
+function openPopupByAttr(popupAttr, isShowProgress = false) {
+    const allPopups = document.querySelectorAll('.popup');
+    allPopups.forEach(p => p.classList.add('hide'));
+
+    const targetPopup = document.querySelector(`.popup[data-popup="${popupAttr}"]`);
+    if (targetPopup) {
+        targetPopup.classList.remove('hide');
+        document.querySelector('.popups').classList.remove('opacity-overlay');
+    }
+
+    const progress = document.querySelector('.popups .progress');
+    if (progress) {
+        progress.classList.toggle('hide', !isShowProgress);
+    }
+}
+// цю функцію видали, а основну розкоменти
+

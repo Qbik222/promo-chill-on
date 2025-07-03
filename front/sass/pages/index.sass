@@ -15,6 +15,37 @@ $font-favbet-text-reg: FavbetText-Regular, sans-serif
 $font-favbet-text-bold: FavbetText-Bold, sans-serif
 $font-yanone-kaffestaz-bold: YanoneKaffeesatz-Bold, sans-serif
 
+// test menu
+
+.menu-test
+  &__group
+    margin-bottom: 5px
+
+  &__btn
+    display: block
+    width: 100%
+    background: #eee
+    padding: 5px
+    cursor: pointer
+    border: 1px solid #ccc
+    text-align: left
+    font-size: 9px
+
+  &__dropdown
+    display: none
+    flex-direction: column
+    padding: 5px
+    border: 1px solid #ddd
+    background: #fafafa
+
+  &__group.open .menu-test__dropdown
+    display: flex
+
+
+// test menu
+
+
+
 .hidden
   //display: none !important
   opacity: 0 !important
@@ -24,8 +55,6 @@ $font-yanone-kaffestaz-bold: YanoneKaffeesatz-Bold, sans-serif
   z-index: 0 !important
   pointer-events: none !important
 
-._week2
-  display: none !important
 
 //test
 .menu-btn
@@ -203,6 +232,7 @@ body
     font-family: $font-favbet-text-reg
     font-size: 12px
     margin-top: 5px
+    text-align: center
   &__bottom
     max-width: 825px
     color: $white
@@ -436,7 +466,7 @@ body
       mask-repeat: no-repeat
       mask-size: 100% 100%
       background: $white
-      font-size: 10px
+      font-size: 8px
       display: flex
       align-items: center
       justify-content: center
@@ -537,15 +567,19 @@ body
         color: #000
   &--popup
     margin-top: 50px
-    max-height: 150px
+    max-height: 190px
     padding: 16px
     background: url("../img/progress/bg-popup-desc.png") no-repeat 0 0/cover
     background-size: 100% 100%
+    @media screen and (max-width: 600px)
+      background: url("../img/progress/bg-popup-mob.png") no-repeat 0 0/cover
+      background-size: 100% 100%
     .progress
       &__right
-        max-width: 150px
+        max-width: 140px
+        min-width: 140px
         margin-left: 0
-        margin-bottom: 29px
+        margin-bottom: 15px
 
 .prize
   display: flex
@@ -1346,6 +1380,12 @@ body
         font-family: $font-favbet-text-reg
       td
         padding-left: 5px
+  &__text
+    color: $white
+    text-align: center
+    margin-top: 10px
+    font-family: $font-favbet-text-reg
+    font-size: 9px
 
 
 .retreat1

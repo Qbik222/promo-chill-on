@@ -1,3 +1,50 @@
+button.menu-btn menu
+.menu-test
+    button.lng-btn en
+    button.auth-btn auth
+    .menu-test__group
+        button.menu-test__btn Інформаційні попапи
+        .menu-test__dropdown
+            button(onclick="openPopupByAttr('iphoneInfo')") iPhone Info
+            button(onclick="openPopupByAttr('laptopInfo')") Laptop Info
+            button(onclick="openPopupByAttr('airpodsInfo')") AirPods Info
+            button(onclick="openPopupByAttr('smartWatchInfo')") Smart Watch Info
+            button(onclick="openPopupByAttr('giftInfo')") Gift Card Info
+            button(onclick="openPopupByAttr('50PointsInfo')") 50 Points Info
+            button(onclick="openPopupByAttr('50FsGateOlymp')") 50 FS Gate Olymp Info
+            button(onclick="openPopupByAttr('25FsLuckyPenny')") 25 FS Lucky Penny Info
+            button(onclick="openPopupByAttr('25FsCoinStrike')") 25 FS Coin Strike Info
+            button(onclick="openPopupByAttr('40FsPirots3')") 40 FS Pirots 3 Info
+            button(onclick="openPopupByAttr('25FsSnoopDogg')") 25 FS Snoop Dogg Info
+            button(onclick="openPopupByAttr('25FsBigBamboo')") 25 FS Big Bamboo Info
+            button(onclick="openPopupByAttr('10FsHitSlot')") 10 FS Hit Slot Info
+            button(onclick="openPopupByAttr('30FsShinigCrown')") 30 FS Shining Crown Info
+            button(onclick="openPopupByAttr('25FsLeBandit')") 25 FS Le Bandit Info
+            button(onclick="openPopupByAttr('20FsLuckOfPanda')") 20 FS Luck Of Panda Info
+            button(onclick="openPopupByAttr('howTakePart')") Як взяти участь
+            button(onclick="openPopupByAttr('infoPopup')") Інфо про участь
+            button(onclick="openPopupByAttr('tablePrizePopup')") Таблиця призів
+
+    .menu-test__group
+        button.menu-test__btn Призові попапи
+        .menu-test__dropdown
+            button(onclick="openPopupByAttr('prizeIphone', true)") iPhone
+            button(onclick="openPopupByAttr('prizeLaptop', true)") Laptop
+            button(onclick="openPopupByAttr('prizeAirpods', true)") AirPods
+            button(onclick="openPopupByAttr('prizeWatch', true)") Smart Watch
+            button(onclick="openPopupByAttr('prizeGift', true)") Gift Card
+            button(onclick="openPopupByAttr('prize50Points', true)") 50 Points
+            button(onclick="openPopupByAttr('prize50FsGateOlymp', true)") 50 FS Gate Olymp
+            button(onclick="openPopupByAttr('prize25FsLuckyPenny', true)") 25 FS Lucky Penny
+            button(onclick="openPopupByAttr('prize25FsCoinStrike', true)") 25 FS Coin Strike
+            button(onclick="openPopupByAttr('prize40FsPirots3', true)") 40 FS Pirots 3
+            button(onclick="openPopupByAttr('prize25FsSnoopDogg', true)") 25 FS Snoop Dogg
+            button(onclick="openPopupByAttr('prize25FsBigBamboo', true)") 25 FS Big Bamboo
+            button(onclick="openPopupByAttr('prize10FsHitSlot', true)") 10 FS Hit Slot
+            button(onclick="openPopupByAttr('prize30FsShinigCrown', true)") 30 FS Shining Crown
+            button(onclick="openPopupByAttr('prize25FsLeBandit', true)") 25 FS Le Bandit
+            button(onclick="openPopupByAttr('prize20FsLuckOfPanda', true)") 20 FS Luck Of Panda
+            button(onclick="openPopupByAttr('unluckyPopup', true)") Без призу
 
 .fav-page.loading#samChill
     .spinner-overlay
@@ -407,106 +454,211 @@
         .games__title.subtitle(data-translate="gamesTitle") Турнірні ігри
         .games__list._week1
             .games__list-item
-                a(href="#").games__list-link
+                a(href="casino/show-game/pragmatic-play/gates-of-olympus-super-scatter/?playMode=re").games__list-link
                 .games__list-item-img
-                    img(src="img/games/week1/game1.png" alt="favbet")
-                a(href="#").games__list-item-btn грати
+                    img(src="img/games/week1/game1.png" alt="Gates of Olympus Super Scatter")
+                a(href="casino/show-game/pragmatic-play/gates-of-olympus-super-scatter/?playMode=re").games__list-item-btn грати
             .games__list-item
-                a(href="#").games__list-link
+                a(href="casino/show-game/pragmatic-play/gates-of-olympus/?playMode=real").games__list-link
                 .games__list-item-img
-                    img(src="img/games/week1/game2.png" alt="favbet")
-                a(href="#").games__list-item-btn грати
+                    img(src="img/games/week1/game2.png" alt="Gates of Olympus")
+                a(href="casino/show-game/pragmatic-play/gates-of-olympus/?playMode=real").games__list-item-btn грати
             .games__list-item
-                a(href="#").games__list-link
+                a(href="casino/show-game/pragmatic-play/gates-of-olympus-1000/?playMode=real").games__list-link
                 .games__list-item-img
-                    img(src="img/games/week1/game3.png" alt="favbet")
-                a(href="#").games__list-item-btn грати
+                    img(src="img/games/week1/game3.png" alt="Gates of Olympus 1000")
+                a(href="casino/show-game/pragmatic-play/gates-of-olympus-1000/?playMode=real").games__list-item-btn грати
             .games__list-item
-                a(href="#").games__list-link
+                a(href="casino/show-game/pragmatic-play/sweet-bonanza/?playMode=real").games__list-link
                 .games__list-item-img
-                    img(src="img/games/week1/game4.png" alt="favbet")
-                a(href="#").games__list-item-btn грати
+                    img(src="img/games/week1/game4.png" alt="Sweet Bonanza")
+                a(href="casino/show-game/pragmatic-play/sweet-bonanza/?playMode=real").games__list-item-btn грати
             .games__list-item
-                a(href="#").games__list-link
+                a(href="casino/show-game/pragmatic-play/sugar-rush-1000/?playMode=real").games__list-link
                 .games__list-item-img
-                    img(src="img/games/week1/game5.png" alt="favbet")
-                a(href="#").games__list-item-btn грати
+                    img(src="img/games/week1/game5.png" alt="Sugar Rush 1000")
+                a(href="casino/show-game/pragmatic-play/sugar-rush-1000/?playMode=real").games__list-item-btn грати
             .games__list-item
-                a(href="#").games__list-link
+                a(href="casino/show-game/pragmatic-play/favbet-bonanza/?playMode=real").games__list-link
                 .games__list-item-img
-                    img(src="img/games/week1/game6.png" alt="favbet")
-                a(href="#").games__list-item-btn грати
+                    img(src="img/games/week1/game6.png" alt="Favbet Bonanza")
+                a(href="casino/show-game/pragmatic-play/favbet-bonanza/?playMode=real").games__list-item-btn грати
             .games__list-item
-                a(href="#").games__list-link
+                a(href="casino/show-game/pragmatic-play/the-dog-house-megaways/?playMode=real").games__list-link
                 .games__list-item-img
-                    img(src="img/games/week1/game7.png" alt="favbet")
-                a(href="#").games__list-item-btn грати
+                    img(src="img/games/week1/game7.png" alt="The Dog House Megaways")
+                a(href="casino/show-game/pragmatic-play/the-dog-house-megaways/?playMode=real").games__list-item-btn грати
             .games__list-item
-                a(href="#").games__list-link
+                a(href="casino/show-game/pragmatic-play/sugar-rush/?playMode=real").games__list-link
                 .games__list-item-img
-                    img(src="img/games/week1/game8.png" alt="favbet")
-                a(href="#").games__list-item-btn грати
+                    img(src="img/games/week1/game8.png" alt="Sugar Rush")
+                a(href="casino/show-game/pragmatic-play/sugar-rush/?playMode=real").games__list-item-btn грати
             .games__list-item
-                a(href="#").games__list-link
+                a(href="casino/show-game/pragmatic-play/starlight-princess-1000/?playMode=real").games__list-link
                 .games__list-item-img
-                    img(src="img/games/week1/game9.png" alt="favbet")
-                a(href="#").games__list-item-btn грати
+                    img(src="img/games/week1/game9.png" alt="Starlight Princess 1000")
+                a(href="casino/show-game/pragmatic-play/starlight-princess-1000/?playMode=real").games__list-item-btn грати
             .games__list-item
-                a(href="#").games__list-link
+                a(href="casino/show-game/pragmatic-play/zeus-vs-hades-gods-of-war/?playMode=real").games__list-link
                 .games__list-item-img
-                    img(src="img/games/week1/game10.png" alt="favbet")
-                a(href="#").games__list-item-btn грати
+                    img(src="img/games/week1/game10.png" alt="Zeus vs Hades - Gods of War")
+                a(href="casino/show-game/pragmatic-play/zeus-vs-hades-gods-of-war/?playMode=real").games__list-item-btn грати
+
         .games__list._week2
             .games__list-item
-                a(href="#").games__list-link
+                a(href="casino/show-game/3-oaks/lucky-penny/?playMode=real").games__list-link
                 .games__list-item-img
-                    img(src="img/games/week1/game1.png" alt="favbet")
-                a(href="#").games__list-item-btn грати
+                    img(src="img/games/week2/game1.png" alt="Lucky Penny")
+                a(href="casino/show-game/3-oaks/lucky-penny/?playMode=real").games__list-item-btn грати
             .games__list-item
-                a(href="#").games__list-link
+                a(href="casino/show-game/3-oaks/sun-of-egypt-3/?playMode=real").games__list-link
                 .games__list-item-img
-                    img(src="img/games/week1/game2.png" alt="favbet")
-                a(href="#").games__list-item-btn грати
+                    img(src="img/games/week2/game2.png" alt="Sun of Egypt 3")
+                a(href="casino/show-game/3-oaks/sun-of-egypt-3/?playMode=real").games__list-item-btn грати
             .games__list-item
-                a(href="#").games__list-link
+                a(href="casino/show-game/3-oaks/more-magic-apple/?playMode=real").games__list-link
                 .games__list-item-img
-                    img(src="img/games/week1/game3.png" alt="favbet")
-                a(href="#").games__list-item-btn грати
+                    img(src="img/games/week2/game3.png" alt="More Magic Apple")
+                a(href="casino/show-game/3-oaks/more-magic-apple/?playMode=real").games__list-item-btn грати
             .games__list-item
-                a(href="#").games__list-link
+                a(href="casino/show-game/3-oaks/sun-of-egypt-4/?playMode=real").games__list-link
                 .games__list-item-img
-                    img(src="img/games/week1/game4.png" alt="favbet")
-                a(href="#").games__list-item-btn грати
+                    img(src="img/games/week2/game4.png" alt="Sun of Egypt 4")
+                a(href="casino/show-game/3-oaks/sun-of-egypt-4/?playMode=real").games__list-item-btn грати
             .games__list-item
-                a(href="#").games__list-link
+                a(href="casino/show-game/3-oaks/3-hot-chillies/?playMode=real").games__list-link
                 .games__list-item-img
-                    img(src="img/games/week1/game5.png" alt="favbet")
-                a(href="#").games__list-item-btn грати
+                    img(src="img/games/week2/game5.png" alt="3 Hot Chillies")
+                a(href="casino/show-game/3-oaks/3-hot-chillies/?playMode=real").games__list-item-btn грати
             .games__list-item
-                a(href="#").games__list-link
+                a(href="casino/show-game/3-oaks/coin-volcano/?playMode=real").games__list-link
                 .games__list-item-img
-                    img(src="img/games/week1/game6.png" alt="favbet")
-                a(href="#").games__list-item-btn грати
+                    img(src="img/games/week2/game6.png" alt="Coin Volcano")
+                a(href="casino/show-game/3-oaks/coin-volcano/?playMode=real").games__list-item-btn грати
             .games__list-item
-                a(href="#").games__list-link
+                a(href="casino/show-game/3-oaks/3-pots-of-egypt/?playMode=real").games__list-link
                 .games__list-item-img
-                    img(src="img/games/week1/game7.png" alt="favbet")
-                a(href="#").games__list-item-btn грати
+                    img(src="img/games/week2/game7.png" alt="3 Pots of Egypt")
+                a(href="casino/show-game/3-oaks/3-pots-of-egypt/?playMode=real").games__list-item-btn грати
             .games__list-item
-                a(href="#").games__list-link
+                a(href="casino/show-game/3-oaks/space-coins/?playMode=real").games__list-link
                 .games__list-item-img
-                    img(src="img/games/week1/game8.png" alt="favbet")
-                a(href="#").games__list-item-btn грати
+                    img(src="img/games/week2/game8.png" alt="Space Coins")
+                a(href="casino/show-game/3-oaks/space-coins/?playMode=real").games__list-item-btn грати
             .games__list-item
-                a(href="#").games__list-link
+                a(href="casino/show-game/3-oaks/coin-express/?playMode=real").games__list-link
                 .games__list-item-img
-                    img(src="img/games/week1/game9.png" alt="favbet")
-                a(href="#").games__list-item-btn грати
+                    img(src="img/games/week2/game9.png" alt="Coin Express")
+                a(href="casino/show-game/3-oaks/coin-express/?playMode=real").games__list-item-btn грати
             .games__list-item
-                a(href="#").games__list-link
+                a(href="casino/show-game/3-oaks/dancing-joker/?playMode=real").games__list-link
                 .games__list-item-img
-                    img(src="img/games/week1/game10.png" alt="favbet")
-                a(href="#").games__list-item-btn грати
+                    img(src="img/games/week2/game10.png" alt="Dancing Joker")
+                a(href="casino/show-game/3-oaks/dancing-joker/?playMode=real").games__list-item-btn грати
+
+        .games__list._week3
+            .games__list-item
+                a(href="casino/show-game/playson/coin-strike-hold-and-win-power-chance/?playMode=real").games__list-link
+                .games__list-item-img
+                    img(src="img/games/week3/game1.png" alt="Coin Strike Power Chance")
+                a(href="casino/show-game/playson/coin-strike-hold-and-win-power-chance/?playMode=real").games__list-item-btn грати
+            .games__list-item
+                a(href="casino/show-game/playson/pink-joker-hold-and-win-power-chance/?playMode=real").games__list-link
+                .games__list-item-img
+                    img(src="img/games/week3/game2.png" alt="Pink Joker Power Chance")
+                a(href="casino/show-game/playson/pink-joker-hold-and-win-power-chance/?playMode=real").games__list-item-btn грати
+            .games__list-item
+                a(href="casino/show-game/playson/diamonds-power-hold-and-win-power-chance/?playMode=real").games__list-link
+                .games__list-item-img
+                    img(src="img/games/week3/game3.png" alt="Diamonds Power Chance")
+                a(href="casino/show-game/playson/diamonds-power-hold-and-win-power-chance/?playMode=real").games__list-item-btn грати
+            .games__list-item
+                a(href="casino/show-game/playson/royal-coins-2-hold-and-win-power-chance/?playMode=real").games__list-link
+                .games__list-item-img
+                    img(src="img/games/week3/game4.png" alt="Royal Coins 2 Power Chance")
+                a(href="casino/show-game/playson/royal-coins-2-hold-and-win-power-chance/?playMode=real").games__list-item-btn грати
+            .games__list-item
+                a(href="casino/show-game/playson/energy-joker-hold-and-win-power-chance/?playMode=real").games__list-link
+                .games__list-item-img
+                    img(src="img/games/week3/game5.png" alt="Energy Joker Power Chance")
+                a(href="casino/show-game/playson/energy-joker-hold-and-win-power-chance/?playMode=real").games__list-item-btn грати
+            .games__list-item
+                a(href="casino/show-game/playson/supercharged-clovers-hold-and-win-power-chance/?playMode=real").games__list-link
+                .games__list-item-img
+                    img(src="img/games/week3/game6.png" alt="Supercharged Clovers Power Chance")
+                a(href="casino/show-game/playson/supercharged-clovers-hold-and-win-power-chance/?playMode=real").games__list-item-btn грати
+            .games__list-item
+                a(href="casino/show-game/playson/thunder-coins-hold-and-win-power-chance/?playMode=real").games__list-link
+                .games__list-item-img
+                    img(src="img/games/week3/game7.png" alt="Thunder Coins Power Chance")
+                a(href="casino/show-game/playson/thunder-coins-hold-and-win-power-chance/?playMode=real").games__list-item-btn грати
+            .games__list-item
+                a(href="casino/show-game/playson/coin-strike-hold-and-win/?playMode=real").games__list-link
+                .games__list-item-img
+                    img(src="img/games/week3/game8.png" alt="Coin Strike Hold and Win")
+                a(href="casino/show-game/playson/coin-strike-hold-and-win/?playMode=real").games__list-item-btn грати
+            .games__list-item
+                a(href="casino/show-game/playson/royal-joker-hold-and-win/?playMode=real").games__list-link
+                .games__list-item-img
+                    img(src="img/games/week3/game9.png" alt="Royal Joker Hold and Win")
+                a(href="casino/show-game/playson/royal-joker-hold-and-win/?playMode=real").games__list-item-btn грати
+            .games__list-item
+                a(href="casino/show-game/playson/book-del-sol-multiplier/?playMode=real").games__list-link
+                .games__list-item-img
+                    img(src="img/games/week3/game10.png" alt="Book del Sol Multiplier")
+                a(href="casino/show-game/playson/book-del-sol-multiplier/?playMode=real").games__list-item-btn грати
+        .games__list._week4
+            .games__list-item
+                a(href="casino/show-game/elk/pirots-3/?playMode=real").games__list-link
+                .games__list-item-img
+                    img(src="img/games/week4/game1.png" alt="Pirots 3")
+                a(href="casino/show-game/elk/pirots-3/?playMode=real").games__list-item-btn грати
+            .games__list-item
+                a(href="casino/show-game/elk/pirots-2/?playMode=real").games__list-link
+                .games__list-item-img
+                    img(src="img/games/week4/game2.png" alt="Pirots 2")
+                a(href="casino/show-game/elk/pirots-2/?playMode=real").games__list-item-btn грати
+            .games__list-item
+                a(href="casino/show-game/elk/zaplab/?playMode=real").games__list-link
+                .games__list-item-img
+                    img(src="img/games/week4/game3.png" alt="ZapLab")
+                a(href="casino/show-game/elk/zaplab/?playMode=real").games__list-item-btn грати
+            .games__list-item
+                a(href="casino/show-game/elk/cygnus-5/?playMode=real").games__list-link
+                .games__list-item-img
+                    img(src="img/games/week4/game4.png" alt="Cygnus 5")
+                a(href="casino/show-game/elk/cygnus-5/?playMode=real").games__list-item-btn грати
+            .games__list-item
+                a(href="casino/show-game/elk/pirots-x/?playMode=real").games__list-link
+                .games__list-item-img
+                    img(src="img/games/week4/game5.png" alt="Pirots X")
+                a(href="casino/show-game/elk/pirots-x/?playMode=real").games__list-item-btn грати
+            .games__list-item
+                a(href="casino/show-game/elk/tropicool-4/?playMode=real").games__list-link
+                .games__list-item-img
+                    img(src="img/games/week4/game6.png" alt="Tropicool 4")
+                a(href="casino/show-game/elk/tropicool-4/?playMode=real").games__list-item-btn грати
+            .games__list-item
+                a(href="casino/show-game/elk/book-of-toro/?playMode=real").games__list-link
+                .games__list-item-img
+                    img(src="img/games/week4/game7.png" alt="Book of Toro")
+                a(href="casino/show-game/elk/book-of-toro/?playMode=real").games__list-item-btn грати
+            .games__list-item
+                a(href="casino/show-game/elk/ryze/?playMode=real").games__list-link
+                .games__list-item-img
+                    img(src="img/games/week4/game8.png" alt="Ryze")
+                a(href="casino/show-game/elk/ryze/?playMode=real").games__list-item-btn грати
+            .games__list-item
+                a(href="casino/show-game/elk/heist-guys/?playMode=real").games__list-link
+                .games__list-item-img
+                    img(src="img/games/week4/game9.png" alt="Heist Guys")
+                a(href="casino/show-game/elk/heist-guys/?playMode=real").games__list-item-btn грати
+            .games__list-item
+                a(href="casino/show-game/elk/mine-defender/?playMode=real").games__list-link
+                .games__list-item-img
+                    img(src="img/games/week4/game10.png" alt="Mine Defender")
+                a(href="casino/show-game/elk/mine-defender/?playMode=real").games__list-item-btn грати
+
         a(href='/login' data-translate="authBtn").games__btn.btn-casino.unauth-msg.hide авторизуйся
         button.games__btn.btn-casino.hide.part-btn(data-translate="takePart") взяти участь
         a(href='#' data-translate="playCasino").games__btn.btn-casino.btn-join Грати в казино
@@ -526,6 +678,7 @@
                     4. Накопичуй квитки та приймай участь у розіграші.Щотижня приймай участь в розіграші спортивних призів Акції.
                     Квитки нараховуватимуться та відображатимуться в таблиці «Результати» за бали. Отримуй за кожні 5 балів по 1 квитку. Чим більше квитків, тим більше шансів виграти приз. Щотижня приймай участь в розіграші спортивних призів Акції. Розіграш буде проведено в онлайн-трансляцію на YouTube з посиланням на відео на сторінці Акції.
                     Переможці розіграшу будуть опубліковані  в таблиці “Результати” протягом 72 годин після закінчення акційного тижня та відео розіграшу буде опубліковано на офіційному каналі платформи YouTube за посиланням https://www.youtube.com/@favbetua.
+        .drop__text(data-transalte="dropText") *Загальний призовий фонд акції «Увімкни чіл» складає 10 000 000  електронних грошових замінників, 100 000  фріспінів у вказаних Організатором акційних іграх, додаткових бонусних пропозицій та визначених фізичних призів. Період дії акції – з 07.07.2025 по 03.08.2025 року. Деталі акції на сайті favbet.ua
     .footer
         .footer__tree
             .footer__tree-left
@@ -766,7 +919,7 @@
             .popup__text(data-translate="prize50Points") + 50 ігрових балів в турнірну таблицю
             .popup__img
                 img(src="img/prize/popup/50points.png" alt="favbet")
-            .popup__text.popup__text--icon(data-translate="popupConnectText") Наша команда звʼяжеться з тобою для уточнення всіх деталей.
+            a(href='#' data-translate="takeBonus").popup__btn.btn забрати
             .popup__close
 
         .popup.hide(data-popup="prize50FsGateOlymp")
@@ -774,7 +927,7 @@
             .popup__text(data-translate="prize50FsGateOlymp") 50 фс в Gates of Olympus Super Scatter
             .popup__img
                 img(src="img/prize/popup/50fs.png" alt="favbet")
-            .popup__text.popup__text--icon(data-translate="popupConnectText") Наша команда звʼяжеться з тобою для уточнення всіх деталей.
+            a(href='#' data-translate="takeBonus").popup__btn.btn забрати
             .popup__close
 
         .popup.hide(data-popup="prize25FsLuckyPenny")
@@ -782,7 +935,7 @@
             .popup__text(data-translate="prize25FsLuckyPenny") 25 фс в Lucky Penny
             .popup__img
                 img(src="img/prize/popup/25fs.png" alt="favbet")
-            .popup__text.popup__text--icon(data-translate="popupConnectText") Наша команда звʼяжеться з тобою для уточнення всіх деталей.
+            a(href='#' data-translate="takeBonus").popup__btn.btn забрати
             .popup__close
 
         .popup.hide(data-popup="prize25FsCoinStrike")
@@ -790,7 +943,7 @@
             .popup__text(data-translate="prize25FsCoinStrike") 25 фс в Coin Strike: Hold and Win Power Chance
             .popup__img
                 img(src="img/prize/popup/25fs.png" alt="favbet")
-            .popup__text.popup__text--icon(data-translate="popupConnectText") Наша команда звʼяжеться з тобою для уточнення всіх деталей.
+            a(href='#' data-translate="takeBonus").popup__btn.btn забрати
             .popup__close
 
         .popup.hide(data-popup="prize40FsPirots3")
@@ -798,7 +951,7 @@
             .popup__text(data-translate="prize40FsPirots3") 40 фс в Pirots 3
             .popup__img
                 img(src="img/prize/popup/40fs.png" alt="favbet")
-            .popup__text.popup__text--icon(data-translate="popupConnectText") Наша команда звʼяжеться з тобою для уточнення всіх деталей.
+            a(href='#' data-translate="takeBonus").popup__btn.btn забрати
             .popup__close
 
         .popup.hide(data-popup="prize25FsSnoopDogg")
@@ -806,7 +959,7 @@
             .popup__text(data-translate="prize25FsSnoopDogg") 25 фс в Snoop Dogg Dollars
             .popup__img
                 img(src="img/prize/popup/25fs.png" alt="favbet")
-            .popup__text.popup__text--icon(data-translate="popupConnectText") Наша команда звʼяжеться з тобою для уточнення всіх деталей.
+            a(href='#' data-translate="takeBonus").popup__btn.btn забрати
             .popup__close
 
         .popup.hide(data-popup="prize25FsBigBamboo")
@@ -814,7 +967,7 @@
             .popup__text(data-translate="prize25FsBigBamboo") 25 фс в Big Bamboo
             .popup__img
                 img(src="img/prize/popup/25fs.png" alt="favbet")
-            .popup__text.popup__text--icon(data-translate="popupConnectText") Наша команда звʼяжеться з тобою для уточнення всіх деталей.
+            a(href='#' data-translate="takeBonus").popup__btn.btn забрати
             .popup__close
 
         .popup.hide(data-popup="prize10FsHitSlot")
@@ -822,7 +975,7 @@
             .popup__text(data-translate="prize10FsHitSlot") 10 фс в 2025 Hit Slot
             .popup__img
                 img(src="img/prize/popup/10fs.png" alt="favbet")
-            .popup__text.popup__text--icon(data-translate="popupConnectText") Наша команда звʼяжеться з тобою для уточнення всіх деталей.
+            a(href='#' data-translate="takeBonus").popup__btn.btn забрати
             .popup__close
 
         .popup.hide(data-popup="prize30FsShinigCrown")
@@ -830,7 +983,7 @@
             .popup__text(data-translate="prize30FsShinigCrown") 30 фс в Shining Crown
             .popup__img
                 img(src="img/prize/popup/30fs.png" alt="favbet")
-            .popup__text.popup__text--icon(data-translate="popupConnectText") Наша команда звʼяжеться з тобою для уточнення всіх деталей.
+            a(href='#' data-translate="takeBonus").popup__btn.btn забрати
             .popup__close
 
         .popup.hide(data-popup="prize25FsLeBandit")
@@ -838,7 +991,7 @@
             .popup__text(data-translate="prize25FsLeBandit") 25 фс в Le Bandit
             .popup__img
                 img(src="img/prize/popup/25fs.png" alt="favbet")
-            .popup__text.popup__text--icon(data-translate="popupConnectText") Наша команда звʼяжеться з тобою для уточнення всіх деталей.
+            a(href='#' data-translate="takeBonus").popup__btn.btn забрати
             .popup__close
 
         .popup.hide(data-popup="prize20FsLuckOfPanda")
@@ -846,7 +999,14 @@
             .popup__text(data-translate="prize20FsLuckOfPanda") 20 фс в Luck Of Panda
             .popup__img
                 img(src="img/prize/popup/20fs.png" alt="favbet")
-            .popup__text.popup__text--icon(data-translate="popupConnectText") Наша команда звʼяжеться з тобою для уточнення всіх деталей.
+            a(href='#' data-translate="takeBonus").popup__btn.btn забрати
+            .popup__close
+
+        .popup.hide(data-popup="unluckyPopup")
+            .popup__title.subtitle(data-translate="unluckyPopupTitle") завтра пощастить
+            .popup__text(data-translate="unluckyPopupText") Сьогодні без призу, але шанс лишається! Спробуй знову завтра.
+            .popup__img
+                img(src="img/prize/popup/unlucky.png" alt="favbet")
             .popup__close
 
         //- Виграшні попапи для всіх слайдів
