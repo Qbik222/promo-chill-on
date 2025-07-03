@@ -1,6 +1,6 @@
 (function () {
 
-    const apiURL = 'https://fav-prom.com/api_your_promo'
+    const apiURL = 'https://fav-prom.com/api_sam_ua'
 
     const getActiveWeek = (promoStartDate, weekDuration) => {
         const currentDate = new Date();
@@ -70,6 +70,8 @@
     const translateState = true;
     let userId = null;
 
+    userId = 100300268
+
     const box = document.querySelector('.shake-box');
     const initialDelay = Math.random() * 6000 + 4000;
 
@@ -138,7 +140,7 @@
         }
 
         function quickCheckAndRender() {
-            // checkUserAuth();
+            checkUserAuth();
 
             // openPopupByAttr("prizeLaptop", true)
 
@@ -147,6 +149,10 @@
             SetSliderWidthBlur()
 
             setTimeout(triggerShake, initialDelay);
+
+            participateBtns.forEach(btn => {
+                btn.addEventListener('click', participate);
+            })
 
             document.querySelectorAll('.popup__close').forEach(closeBtn => {
                 closeBtn.addEventListener('click', closeAllPopups);
@@ -205,7 +211,7 @@
             .then(json => {
                 i18nData = json;
                 translate();
-                const targetNode = document.getElementById("goals-or-zeros-leage");
+                const targetNode = document.getElementById("samChill");
                 const mutationObserver = new MutationObserver(function (mutations) {
                     mutationObserver.disconnect();
                     translate();
@@ -578,8 +584,8 @@
 
 
 
-    // loadTranslations().then(init)
+    loadTranslations().then(init)
 
-    init()
+    // init()
 
 })();
