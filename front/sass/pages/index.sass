@@ -302,6 +302,7 @@ body
     align-items: center
     margin-top: 30px
     z-index: 2
+    min-width: 716px
   &__left
     display: flex
     align-items: center
@@ -457,9 +458,32 @@ body
       padding: 1px
     &-bar
       width: 35px
+      min-width: 1%
       height: 5px
       border-radius: 4px
       background: linear-gradient(90deg, #E99C9A 0%, #E25864 100%)
+  &__btn
+    &-pointer
+      text-align: center
+      color: $white
+      padding: 8px
+      font-family: $font-favbet-text-reg
+      font-size: 12px
+      position: relative
+      background: url("../img/challange/pointer-bg.png") no-repeat 0 0/cover
+      background-size: 100% 100%
+      margin-top: 5px
+      animation: floatPointer 2s ease-in-out infinite
+      &::before
+        content: ""
+        display: block
+        position: absolute
+        top: 0
+        left: 50%
+        width: 18px
+        height: 9px
+        background: url("../img/challange/pointer-arrow.png") no-repeat 0 0/contain
+        transform: translate(-50%, -100%)
   &__tabs
     &-day
       mask-image: url("../img/pentagon.png")
@@ -479,7 +503,7 @@ body
     &-item
       display: flex
       align-items: center
-      cursor: pointer
+      //cursor: pointer
       &._active
         ._lock, ._open
           transform: scale(1.2)
@@ -496,7 +520,8 @@ body
           display: block
   &__nav
     margin-top: 30px
-    display: flex
+    //display: flex
+    display: none
     align-items: center
     justify-content: center
     gap: 13px
@@ -529,7 +554,7 @@ body
 .progress
   display: flex
   align-items: center
-  margin-top: -40px
+  //margin-top: -40px
   &__right
     max-width: 215px
     margin-left: -45px
@@ -1447,6 +1472,13 @@ body.dark
     transform: translate(-3px, 0) rotate(-4deg)
   80%
     transform: translate(3px, 0) rotate(4deg)
+
+@keyframes floatPointer
+  0%, 100%
+    top: 0
+  50%
+    top: 5px
+
 
 .shake
   animation: shake 1.2s

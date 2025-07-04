@@ -65,7 +65,7 @@ button.menu-btn menu
                     img(src="img/welcome/pers-desc-en.png" alt="Favbet")
             a(href='/login' data-translate="authBtn").welcome__btn.btn.unauth-msg авторизуйся
             button(data-translate="takePart").welcome__btn.btn.hide.part-btn взяти участь
-            a(href='#' data-translate="makeDeposit").welcome__btn.btn.hide.btn-join депозит
+            a(href='#' data-translate="playCasino").welcome__btn.btn.hide.btn-join депозит
             .welcome__date(data-translate="welcomeDate") Період проведення акції з 07.07.2025 до 03.08.2025.
         .welcome__bottom(data-translate="welcomeBottom") Протягом 4 тижнів бери участь в акції «Увімкни чіл» від FAVBET та отримуй можливість виграти частину з призового фонду в 10 000 000 гривень, 100 000 фріспінів та інших крутих фізичних призів.
         .welcome__popup.popup-btn.open-btn(data-popup="infoPopup" data-translate="popupBtn") #[span Детальніше ]
@@ -86,7 +86,7 @@ button.menu-btn menu
         .challange__wrap
             .challange__left
                 .challange__frame
-                    .challange__current._unaut
+                    .challange__current
                         .challange__current-item._active
                             picture
                                 source(media="(max-width: 600px)" srcset='img/challange/card-1/card-mob.jpg')
@@ -178,7 +178,7 @@ button.menu-btn menu
             .challange__right
                 .challange__deposit
                     .challange__deposit-title(data-translate="depositAmountTitle") Загальна сума депозитів за добу
-                    .challange__deposit-amount #[span 0 ] #[span(data-translate="depositAmount") /1000 грн.]
+                    .challange__deposit-amount #[span.counter-points 0 ] #[span(data-translate="depositAmount") /1000 грн.]
                     .challange__deposit-last
                         .challange__deposit-last-item(data-translate="lastUpd") Останнє оновлення:
                         .challange__deposit-last-item.last-upd 23:34
@@ -187,6 +187,9 @@ button.menu-btn menu
                 a(href='/login' data-translate="authBtn").challange__btn.btn.unauth-msg авторизуйся
                 button(data-translate="takePart").challange__btn.btn.hide.part-btn взяти участь
                 a(href='#' data-translate="makeDeposit").challange__btn.btn.hide.btn-join депозит
+                button(data-translate="openBtn").challange__btn.btn.hide.btn-open депозит
+                //.challange__btn-pointer(data-transalte="challangePointer") відкривай картку!
+                .challange__btn-pointer Відкривай картку!
         .challange__nav
             .challange__nav-left
             .challange__nav-dots
@@ -353,7 +356,7 @@ button.menu-btn menu
                 .table__row-item(data-translate="prize") Приз
                 .table__row-item(data-translate="wager") Wager
 
-        .table__body
+        .table__body#table
             .table__row.place1
                 .table__row-item 1
                 .table__row-item 100300268

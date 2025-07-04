@@ -83,6 +83,16 @@
   .challange
     &__subtitle
       max-width: 355px
+    &__btn
+      &-pointer
+        position: absolute
+        right: 5px
+        top: 0
+        transform: translate(0, -120%)
+        &::before
+          top: auto
+          bottom: 0
+          transform: translate(-50%, 100%) rotate(180deg)
     &__nav
       margin-top: 40px
     &__wrap
@@ -115,6 +125,8 @@
       flex-direction: row
       margin-top: 10px
       gap: 20px
+      position: relative
+      z-index: 5
       .btn
         min-width: 142px
         width: fit-content

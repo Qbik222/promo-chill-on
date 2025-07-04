@@ -2,8 +2,10 @@
 
     const apiURL = 'https://fav-prom.com/api_sam_ua'
 
+    const currentDate = new Date("2025-07-24T00:00:00");
+
     const getActiveWeek = (promoStartDate, weekDuration) => {
-        const currentDate = new Date();
+
         let weekDates = [];
 
         const Day = 24 * 60 * 60 * 1000;
@@ -33,7 +35,7 @@
         return activeWeekIndex;
     };
 
-    const promoStartDate = new Date("2025-07-14T00:00:00");
+    const promoStartDate = new Date("2025-07-15T00:00:00");
     const weekDuration = 7;
 
     const activeWeek = getActiveWeek(promoStartDate, weekDuration) || 1;
@@ -51,13 +53,46 @@
         currentList.classList.remove('hide');
     }
 
+    const getCurrentDayNumber = (promoStartDate) => {
+        const diffInMs = currentDate - promoStartDate;
+        let dayNumber = Math.floor(diffInMs / (24 * 60 * 60 * 1000)) + 1;
+        if(activeWeek > 1){
+           dayNumber = dayNumber - ((activeWeek - 1) * 7);
+        }
+        return dayNumber;
+    };
+
+    const dayNumber = getCurrentDayNumber(promoStartDate);
+    const currentDayNumber = dayNumber > 0 ? dayNumber : 1;
+    console.log(currentDayNumber);
+
 
     const mainPage = document.querySelector(".fav-page"),
+        challangeBlock = document.querySelector('.challange'),
+        challangeDepositBtn = challangeBlock.querySelector('.btn-join'),
         unauthMsgs = document.querySelectorAll('.unauth-msg'),
         participateBtns = document.querySelectorAll('.part-btn'),
         redirectBtns = document.querySelectorAll('.btn-join'),
         loader = document.querySelector(".spinner-overlay"),
-        currentCardsWrap = document.querySelector('.challange__current');
+        currentCardsWrap = document.querySelector('.challange__current'),
+        progressBar = document.querySelector('.challange__progress-bar'),
+        challangeBlur = document.querySelector('.challange__blur'),
+        challangeBlurStatus = document.querySelector('.challange__blur-status'),
+        progressBox = document.querySelector('.challange__progress-box'),
+        challangeBtnPointer = document.querySelector('.challange__btn-pointer'),
+        btnOpen = document.querySelector('.btn-open'),
+        counterPoints = document.querySelector('.counter-points'),
+        popups = document.querySelector('.popups'),
+        streakDays = document.querySelectorAll(".progress__days-item"),
+        streakDaysPopup = popups.querySelectorAll(".progress__days-item"),
+        resultsTable = document.querySelector('#table'),
+        resultsTableOther = document.querySelector('#tableOther'),
+        tableTabs = document.querySelectorAll('.table__tabs-item');
+
+
+    console.log(btnOpen)
+
+
 
     const ukLeng = document.querySelector('#ukLeng');
     const enLeng = document.querySelector('#enLeng');
@@ -121,14 +156,14 @@
             .catch(err => {
                 console.error('API request failed:', err);
 
-                reportError(err);
-
-                document.querySelector('.fav-page').style.display = 'none';
-                if (window.location.href.startsWith("https://www.favbet.hr/")) {
-                    window.location.href = '/promocije/promocija/stub/';
-                } else {
-                    window.location.href = '/promos/promo/stub/';
-                }
+                // reportError(err);
+                //
+                // document.querySelector('.fav-page').style.display = 'none';
+                // if (window.location.href.startsWith("https://www.favbet.hr/")) {
+                //     window.location.href = '/promocije/promocija/stub/';
+                // } else {
+                //     window.location.href = '/promos/promo/stub/';
+                // }
 
                 return Promise.reject(err);
             });
@@ -140,6 +175,227 @@
         document.body.style.overflow = "auto"
         mainPage.classList.remove("loading")
     }
+
+
+
+    function initSpin(){
+
+        btnOpen.textContent = translateKey("loader")
+        challangeBtnPointer.classList.add("hide");
+
+
+        sendSpinRequest().then(res => {
+
+            const prize = res.number;
+            const streakBonus = res.streakBonus || debug;
+
+            btnOpen.textContent = translateKey("openBtn")
+
+            btnOpen.classList.add("hide");
+            challangeDepositBtn.classList.remove("hide");
+
+            setStreakDays(streakBonus)
+
+            if (prize === 'respin') openPopupByAttr('unluckyPopup', true);
+            if (prize === 'nothing') openPopupByAttr('unluckyPopup', true);
+            if (prize === 'wheelBubbleSpans') openPopupByAttr('prize50Points', true);
+            if (prize === 'iphone') openPopupByAttr('prizeIphone', true);
+            if (prize === 'macBook') openPopupByAttr('prizeLaptop', true);
+            if (prize === 'airPods') openPopupByAttr('prizeAirpods', true);
+            if (prize === 'appleWatch') openPopupByAttr('prizeWatch', true);
+            if (prize === 'rozetkaGiftCard') openPopupByAttr('prizeGift', true);
+            if (prize === 'fs50') openPopupByAttr('prize50FsGateOlymp', true);
+            if (prize === 'fs25_3oaks') openPopupByAttr('prize25FsLuckyPenny', true);
+            if (prize === 'fs25_playson') openPopupByAttr('prize25FsCoinStrike', true);
+            if (prize === 'fs40') openPopupByAttr('prize40FsPirots3', true);
+            if (prize === 'fs25_bgaming') openPopupByAttr('prize25FsSnoopDogg', true);
+            if (prize === 'fs25_pushGaming') openPopupByAttr('prize25FsBigBamboo', true);
+            if (prize === 'fs10') openPopupByAttr('prize10FsHitSlot', true);
+            if (prize === 'fs30') openPopupByAttr('prize30FsShinigCrown', true);
+            if (prize === 'fs25_hacksaw') openPopupByAttr('prize25FsLeBandit', true);
+            if (prize === 'fs20') openPopupByAttr('prize20FsLuckOfPanda', true);
+
+
+        })
+    }
+
+    function sendSpinRequest() {
+        if (!userId) {
+            return;
+        }
+
+        if (debug) {
+            return Promise.resolve({
+                number: 'respin',
+                type: 'test'
+            });
+        }
+
+        const params = {userid: userId};
+        return request('/spin', {
+            method: 'POST',
+            body: JSON.stringify(params)
+        });
+    }
+
+    function setStreakDays(streak) {
+        streakDays.forEach((day, i) =>{
+            day.classList.remove("_active")
+            console.log(day)
+            if(i + 1 <= streak){
+                day.classList.add('_active');
+            }
+        })
+        streakDaysPopup.forEach((day, i) =>{
+            day.classList.remove("_active")
+            console.log(day)
+            if(i + 1 <= streak){
+                day.classList.add('_active');
+            }
+        })
+    }
+
+    function setUserProgress(userData){
+        let spinAllowed = userData.spinAllowed,
+            pointsPerDay = userData.pointsPerDay,
+            streak = userData.spinsStreak,
+            lastUpdate = userData.lastUpdate
+
+        console.log(streakDays)
+
+        setStreakDays(streak)
+
+        pointsPerDay = 10002
+
+        const thresholdPoints = 1000
+
+        pointsPerDay = pointsPerDay > thresholdPoints ? thresholdPoints : pointsPerDay;
+
+
+        counterPoints.textContent = `${pointsPerDay}`
+
+        let progress = Math.min((pointsPerDay / thresholdPoints) * 100, 100);
+
+
+        if (progress >= 100) {
+            progress = 100
+            challangeBlur.classList.add('hide')
+            progressBox.classList.remove('_lock')
+            progressBox.classList.add('_open')
+            challangeBtnPointer.classList.remove("hide")
+            btnOpen.classList.remove('hide')
+            challangeDepositBtn.classList.add('hide')
+        }else{
+            challangeBlur.classList.remove('hide')
+            progressBox.classList.add('_lock')
+            progressBox.classList.remove('_open')
+            challangeBtnPointer.classList.add("hide")
+            btnOpen.classList.add('hide')
+            challangeDepositBtn.classList.remove('hide')
+
+
+        }
+
+        console.log(`Прогрес користувача: ${progress.toFixed(0)}%`);
+
+        setProgressWidth(progress);
+
+
+        console.log(userData)
+    }
+
+    function setProgressWidth(progressPercent) {
+
+        progressBar.style.width = `${progressPercent}%`;
+
+        const barRect = progressBar.getBoundingClientRect();
+        const parentRect = currentCardsWrap.getBoundingClientRect();
+
+        const rightEdge = barRect.right - parentRect.left - 5;
+
+        challangeBlur.style.left = `${rightEdge}px`;
+        challangeBlurStatus.textContent = `${progressPercent.toFixed(0)}%`;
+
+
+    }
+    function resolveStatusTranslation(status) {
+        if (!status || status === 'undefined') {
+            return translateKey('betUndefined');
+        }
+        if (status === 'win') {
+            return translateKey('winBet');
+        }
+        if (status === 'lose') {
+            return translateKey('loseBet');
+        }
+    }
+
+    function displayBetsHistory(bets) {
+        const spinItem = document.querySelector('.spins-row');
+        const noSpinItem = document.querySelector('.no-spins');
+        const noBets = !bets || bets.length === 0;
+
+        if (noBets && !debug) {
+            spinItem.classList.add('hide');
+            noSpinItem.classList.remove('hide');
+            return;
+        }
+
+        if(debug){
+            console.warn("debug bet history")
+            return;
+
+        }
+
+        spinItem.innerHTML =
+            `
+       <div class="spins-row-head">
+            <div class="content-date" data-translate="myBetDate"></div>
+            <div class="content-prize" data-translate="myBetId"></div>
+<!--            <div class="content-status" data-translate="myBetStatus"></div>-->
+        </div>
+        `;
+        spinItem.classList.remove('hide');
+        noSpinItem.classList.add('hide');
+
+        let upd = 0;
+
+        bets.forEach(spin => {
+            const spinDate = new Date(spin.betDate);
+            const formattedDate = spinDate.toLocaleDateString('uk-UA').slice(0, 5);
+            const status = resolveStatusTranslation(spin.status);
+
+            if (status) {
+                const spinElement = document.createElement('div');
+                spinElement.classList.add('spins-row-item');
+
+                const isWin = spin.status === "win";
+                const statusClass = isWin ? '_done' : '';
+
+                spinElement.innerHTML = `
+                    <span class="content-date">${formattedDate}</span>
+                    <span class="content-prize">ID:${spin.cardID}</span>
+<!--                    <span class="content-status ${statusClass}"></span>-->
+                `;
+                spinItem.appendChild(spinElement);
+                upd++;
+            }
+        });
+
+        if (upd === 0) {
+            spinItem.classList.add('hide');
+            noSpinItem.classList.remove('hide');
+        }
+    }
+
+    function setBetHistory(stageNum){
+        request("/betsHistory").then((res) => {
+            const user = res.find(user => user.userid === userId);
+            const bets = user?.bets
+            displayBetsHistory(bets)
+        })
+    }
+
 
     async function init() {
         let attempts = 0;
@@ -158,7 +414,26 @@
         function quickCheckAndRender() {
             checkUserAuth();
 
+
+
             // openPopupByAttr("prizeLaptop", true)
+
+            btnOpen.addEventListener('click', initSpin);
+
+            setBetHistory()
+
+            tableTabs.forEach(tab => {
+                tab.addEventListener('click', () =>{
+                    tableTabs.forEach(t => t.classList.remove('active'));
+                    console.log(tableTabs)
+
+                    let tabNum = Number(tab.getAttribute("data-week"))
+                    tab.classList.add('active');
+                    renderUsers(tabNum);
+                });
+            })
+
+            renderUsers(activeWeek)
 
             setTimeout(hideLoader, 1000);
 
@@ -262,54 +537,73 @@
             dots[index].classList.add('_active');
         }
 
-        function moveLeft() {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            updateSlider(currentIndex);
-        }
+        updateSlider(currentDayNumber - 1);
+        tabs.forEach((tab, i) =>{
+            if(i + 1 <= currentDayNumber){
+                tab.classList.add('_open');
+                tab.classList.remove('_lock');
 
-        function moveRight() {
-            currentIndex = (currentIndex + 1) % slides.length;
-            updateSlider(currentIndex);
-        }
+            }else{
+                tab.classList.remove('_active');
+                tab.classList.add('_lock');
+                tab.classList.remove('_open');
+            }
+            if(i + 1 === activeWeek){
+                tab.classList.add('_active');
+            }
+        } );
 
-        btnLeft.addEventListener('click', moveLeft);
-        btnRight.addEventListener('click', moveRight);
+        // function moveLeft() {
+        //     currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        //     updateSlider(currentIndex);
+        // }
+        //
+        // function moveRight() {
+        //     currentIndex = (currentIndex + 1) % slides.length;
+        //     updateSlider(currentIndex);
+        // }
+        //
+        // btnLeft.addEventListener('click', moveLeft);
+        // btnRight.addEventListener('click', moveRight);
 
-        tabs.forEach((tab, index) => {
-            tab.addEventListener('click', () => {
-                currentIndex = index;
-                updateSlider(currentIndex);
-            });
-        });
-
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                currentIndex = index;
-                updateSlider(currentIndex);
-            });
-        });
+        // tabs.forEach((tab, index) => {
+        //     tab.addEventListener('click', () => {
+        //         currentIndex = index;
+        //         updateSlider(currentIndex);
+        //     });
+        // });
+        //
+        // dots.forEach((dot, index) => {
+        //     dot.addEventListener('click', () => {
+        //         currentIndex = index;
+        //         updateSlider(currentIndex);
+        //     });
+        // });
 
     }
 
     function checkUserAuth() {
         const loadTime = 200;
+        request(`/favuser/${userId}`).then((user) => {
 
-        setTimeout(() => {
-            const showElements = (elements) => elements.forEach(el => el.classList.remove('hide'));
-            const hideElements = (elements) => elements.forEach(el => el.classList.add('hide'));
+            setTimeout(() => {
+                const showElements = (elements) => elements.forEach(el => el.classList.remove('hide'));
+                const hideElements = (elements) => elements.forEach(el => el.classList.add('hide'));
 
-            if (!userId) {
-                hideElements(participateBtns);
-                hideElements(redirectBtns);
-                showElements(unauthMsgs);
-                hideLoader();
-                return Promise.resolve(false);
-            }
+                if (!userId) {
+                    hideElements(participateBtns);
+                    hideElements(redirectBtns);
+                    showElements(unauthMsgs);
+                    hideLoader();
+                    currentCardsWrap.classList.add('_unauth');
+                    return Promise.resolve(false);
+                }else{
+                    currentCardsWrap.classList.remove('_unauth');
+                }
 
-            hideElements(unauthMsgs);
+                hideElements(unauthMsgs);
 
-            return request(`/favuser/${userId}?nocache=1`).then(res => {
-                if (res.userid) {
+                if (user.userid) {
                     hideElements(participateBtns);
                     showElements(redirectBtns);
                 } else {
@@ -317,8 +611,11 @@
                     hideElements(redirectBtns);
                 }
                 hideLoader();
-            });
-        }, loadTime);
+
+                setUserProgress(user);
+
+            }, loadTime)
+        })
     }
 
     function reportError(err) {
@@ -424,6 +721,9 @@
             <div class="table__row-item">
                 ${prizeKey ? translateKey(prizeKey) : ' - '}
             </div>
+            <div class="table__row-item">
+                ${prizeKey ? translateKey(prizeKey) : ' - '}
+            </div>
         `;
 
             table.append(userRow);
@@ -441,7 +741,6 @@
             renderRow(user);
         }
     }
-
 
     function translateKey(key, defaultValue) {
         if (!key) {
