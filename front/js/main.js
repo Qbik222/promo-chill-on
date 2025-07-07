@@ -429,11 +429,11 @@
 
                     let tabNum = Number(tab.getAttribute("data-week"))
                     tab.classList.add('active');
-                    renderUsers(tabNum);
+                    // renderUsers(tabNum);
                 });
             })
 
-            renderUsers(activeWeek)
+            // renderUsers(activeWeek)
 
             setTimeout(hideLoader, 1000);
 
