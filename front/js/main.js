@@ -107,7 +107,7 @@
     let loaderBtn = false
 
     // let locale = "en"
-    let locale = sessionStorage.getItem("locale") || "en"
+    let locale = sessionStorage.getItem("locale") || "uk"
 
     if (ukLeng) locale = 'uk';
     if (enLeng) locale = 'en';
@@ -924,7 +924,7 @@
         if (sessionStorage.getItem("locale")) {
             sessionStorage.removeItem("locale");
         } else {
-            sessionStorage.setItem("locale", "uk");
+            sessionStorage.setItem("locale", "en");
         }
         window.location.reload();
     });
