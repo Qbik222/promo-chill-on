@@ -87,7 +87,8 @@
         streakDaysPopup = popups.querySelectorAll(".progress__days-item"),
         resultsTable = document.querySelector('#table'),
         resultsTableOther = document.querySelector('#tableOther'),
-        tableTabs = document.querySelectorAll('.table__tabs-item');
+        tableTabs = document.querySelectorAll('.table__tabs-item'),
+        dropSpins = document.querySelector('.drop--spins');
 
 
     console.log(btnOpen)
@@ -186,6 +187,8 @@
 
         sendSpinRequest().then(res => {
 
+            console.log(res)
+
             const prize = res.number;
             const streakBonus = res.streakBonus || debug;
 
@@ -265,16 +268,23 @@
 
         setStreakDays(streak)
 
-        pointsPerDay = 10002
+        // pointsPerDay = 10002
 
         const thresholdPoints = 1000
 
+        console.log(pointsPerDay)
+
         pointsPerDay = pointsPerDay > thresholdPoints ? thresholdPoints : pointsPerDay;
+
+        if(!pointsPerDay) pointsPerDay = 0
+
 
 
         counterPoints.textContent = `${pointsPerDay}`
 
         let progress = Math.min((pointsPerDay / thresholdPoints) * 100, 100);
+
+        console.log(progress);
 
 
         if (progress >= 100) {
@@ -286,6 +296,7 @@
             btnOpen.classList.remove('hide')
             challangeDepositBtn.classList.add('hide')
         }else{
+            console.log("dsadas")
             challangeBlur.classList.remove('hide')
             progressBox.classList.add('_lock')
             progressBox.classList.remove('_open')
@@ -298,7 +309,10 @@
 
         console.log(`Прогрес користувача: ${progress.toFixed(0)}%`);
 
-        setProgressWidth(progress);
+
+        if(userId){
+            setProgressWidth(progress);
+        }
 
 
         console.log(userData)
@@ -420,9 +434,14 @@
 
             btnOpen.addEventListener('click', initSpin);
 
-            setBetHistory()
+            // setBetHistory()
 
-            tableTabs.forEach(tab => {
+            tableTabs.forEach((tab, index) => {
+                if(index + 1 === activeWeek){
+                    tab.classList.add('active');
+                }else{
+                    tab.classList.remove('active');
+                }
                 tab.addEventListener('click', () =>{
                     tableTabs.forEach(t => t.classList.remove('active'));
                     console.log(tableTabs)
@@ -550,7 +569,7 @@
                 tab.classList.add('_lock');
                 tab.classList.remove('_open');
             }
-            if(i + 1 === activeWeek){
+            if(i + 1 === currentDayNumber){
                 tab.classList.add('_active');
             }
         } );
@@ -592,12 +611,15 @@
                 const showElements = (elements) => elements.forEach(el => el.classList.remove('hide'));
                 const hideElements = (elements) => elements.forEach(el => el.classList.add('hide'));
 
+                dropSpins.classList.add('hide');
+
                 if (!userId) {
                     hideElements(participateBtns);
                     hideElements(redirectBtns);
                     showElements(unauthMsgs);
                     hideLoader();
                     currentCardsWrap.classList.add('_unauth');
+                    challangeBtnPointer.classList.add('hide');
                     return Promise.resolve(false);
                 }else{
                     currentCardsWrap.classList.remove('_unauth');
@@ -608,13 +630,22 @@
                 if (user.userid) {
                     hideElements(participateBtns);
                     showElements(redirectBtns);
+                    displayBetsHistory(user.spins)
+                    setUserProgress(user);
+                    dropSpins.classList.remove('hide');
                 } else {
                     showElements(participateBtns);
                     hideElements(redirectBtns);
                 }
+
+
+
+
                 hideLoader();
 
-                setUserProgress(user);
+
+
+
 
             }, loadTime)
         })
