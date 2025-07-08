@@ -88,12 +88,12 @@ $font-yanone-kaffestaz-bold: YanoneKaffeesatz-Bold, sans-serif
   display: none !important
 
 body.light
-  background: $bg-grad
+  background: #F3B37A
 
 body
   overscroll-behavior: none
   -webkit-tap-highlight-color: transparent
-  background: $bg-grad
+  background: #F3B37A
   img
     max-width: 100%
     height: auto
@@ -121,7 +121,8 @@ body
   background: url("../img/btn.png") no-repeat 0 0/cover
   background-size: 100% 100%
   color: $dark-green
-  padding-left: 4px
+  padding-left: 10px
+  text-align: center
   text-transform: uppercase
   font-family: $font-yanone-kaffestaz-bold
   font-size: 32px
@@ -520,8 +521,8 @@ body
           display: block
   &__nav
     margin-top: 30px
-    //display: flex
-    display: none
+    display: flex
+    //display: none
     align-items: center
     justify-content: center
     gap: 13px
@@ -604,7 +605,7 @@ body
         max-width: 140px
         min-width: 140px
         margin-left: 0
-        margin-bottom: 15px
+        margin-bottom: -19px
 
 .prize
   display: flex
@@ -726,7 +727,7 @@ body
   flex-direction: column
   align-items: center
   justify-content: flex-start
-  background: rgba(65, 22, 83, 0.60)
+  background: rgba(65, 22, 83, 1)
   backdrop-filter: blur(3px)
   padding: 32px 48px
   //position: absolute
@@ -741,16 +742,26 @@ body
     margin-top: 15px
     max-height: 390px
     overflow: auto
+    scrollbar-width: auto
     &-txt
       font-size: 17px
       line-height: 22px
       color: $white
       font-family: $font-favbet-text-reg
+      overflow: auto
+      padding-right: 5px
+      scrollbar-width: auto
       strong
         font-family: $font-favbet-text-bold
       p
         font-family: $font-favbet-text-reg
         margin-bottom: 15px
+    &::-webkit-scrollbar-thumb
+      width: 2px
+      background: $green
+    &::-webkit-scrollbar
+      width: 2px
+      background: $white
 
   &__text
     color: $white
@@ -1282,6 +1293,8 @@ body
     justify-content: space-between
     color: $white
     border-radius: 8px
+    &::-webkit-details-marker
+      display: none
     @media screen and (max-width: 600px)
       font-size: 14px
       line-height: 22px

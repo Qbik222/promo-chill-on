@@ -389,11 +389,11 @@
     }
 
     function setBetHistory(stageNum){
-        request("/betsHistory").then((res) => {
-            const user = res.find(user => user.userid === userId);
-            const bets = user?.bets
-            displayBetsHistory(bets)
-        })
+        // request("/betsHistory").then((res) => {
+        //     const user = res.find(user => user.userid === userId);
+        //     const bets = user?.bets
+        //     displayBetsHistory(bets)
+        // })
     }
 
 
@@ -525,7 +525,9 @@
         const btnLeft = document.querySelector('.challange__nav-left');
         const btnRight = document.querySelector('.challange__nav-right');
 
-        let currentIndex = 0;
+        let currentIndex = currentDayNumber - 1;
+
+        console.log(currentDayNumber)
 
         function updateSlider(index) {
             slides.forEach(slide => slide.classList.remove('_active'));
@@ -553,32 +555,32 @@
             }
         } );
 
-        // function moveLeft() {
-        //     currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        //     updateSlider(currentIndex);
-        // }
-        //
-        // function moveRight() {
-        //     currentIndex = (currentIndex + 1) % slides.length;
-        //     updateSlider(currentIndex);
-        // }
-        //
-        // btnLeft.addEventListener('click', moveLeft);
-        // btnRight.addEventListener('click', moveRight);
+        function moveLeft() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateSlider(currentIndex);
+        }
 
-        // tabs.forEach((tab, index) => {
-        //     tab.addEventListener('click', () => {
-        //         currentIndex = index;
-        //         updateSlider(currentIndex);
-        //     });
-        // });
-        //
-        // dots.forEach((dot, index) => {
-        //     dot.addEventListener('click', () => {
-        //         currentIndex = index;
-        //         updateSlider(currentIndex);
-        //     });
-        // });
+        function moveRight() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlider(currentIndex);
+        }
+
+        btnLeft.addEventListener('click', moveLeft);
+        btnRight.addEventListener('click', moveRight);
+
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => {
+                currentIndex = index;
+                updateSlider(currentIndex);
+            });
+        });
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentIndex = index;
+                updateSlider(currentIndex);
+            });
+        });
 
     }
 
@@ -867,6 +869,7 @@
     // function openPopupByAttr(popupAttr, isShowProgress = false) {
     //     const allPopups = document.querySelectorAll('.popup');
     //     allPopups.forEach(p => p.classList.add('hide'));
+    //     document.body.style.overflow = 'hidden';
     //
     //     const targetPopup = document.querySelector(`.popup[data-popup="${popupAttr}"]`);
     //     if (targetPopup) {
@@ -885,6 +888,7 @@
         document.querySelectorAll('.popup').forEach(p => p.classList.add('hide'));
         document.querySelectorAll('.popups .progress').forEach(p => p.classList.add('hide'));
         document.querySelector('.popups').classList.add('opacity-overlay');
+        document.body.style.overflow = 'auto';
     }
 
     function triggerShake() {
@@ -948,6 +952,7 @@
 function openPopupByAttr(popupAttr, isShowProgress = false) {
     const allPopups = document.querySelectorAll('.popup');
     allPopups.forEach(p => p.classList.add('hide'));
+    document.body.style.overflow = 'hidden';
 
     const targetPopup = document.querySelector(`.popup[data-popup="${popupAttr}"]`);
     if (targetPopup) {
