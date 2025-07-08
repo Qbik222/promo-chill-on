@@ -879,6 +879,14 @@
                 }, 500)
                 setTimeout(()=>{
                     checkUserAuth()
+                    renderUsers(activeWeek)
+                    tableTabs.forEach((tab, index) => {
+                        if(index + 1 === activeWeek){
+                            tab.classList.add('active');
+                        }else{
+                            tab.classList.remove('active');
+                        }
+                    })
                 }, 1000)
 
             });
