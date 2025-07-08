@@ -129,6 +129,9 @@ body
   font-size: 32px
   transition: background .5s ease-in-out
   border: none
+  &._lock
+    pointer-events: none
+    filter: grayscale(100%)
   &:hover
     background: url("../img/btn-hover.png") no-repeat 0 0/cover
     background-size: 100% 100%
@@ -400,7 +403,7 @@ body
             width: 0
   &__blur
     position: absolute
-    width: 86%
+    width: 100%
     height: 100%
     pointer-events: none
     z-index: 2
@@ -583,11 +586,14 @@ body
     &-item
       color: $white
       font-family: $font-favbet-text-reg
-      font-size: 14px
+      font-size: 12px
       padding: 2px 8px
       opacity: .5
       border: 1px solid $white
       border-radius: 32px
+      display: flex
+      align-items: center
+      gap: 3px
       &._active
         opacity: 1
         background: $white

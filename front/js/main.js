@@ -59,7 +59,7 @@
         if(activeWeek > 1){
            dayNumber = dayNumber - ((activeWeek - 1) * 7);
         }
-        return dayNumber;
+        return dayNumber - 1;
     };
 
     const dayNumber = getCurrentDayNumber(promoStartDate);
@@ -192,6 +192,8 @@
             const prize = res.number;
             const streakBonus = res.streakBonus || debug;
 
+            console.log(streakBonus)
+
             btnOpen.textContent = translateKey("openBtn")
 
             btnOpen.classList.add("hide");
@@ -208,6 +210,7 @@
             if (prize === 'appleWatch') openPopupByAttr('prizeWatch', true);
             if (prize === 'rozetkaGiftCard') openPopupByAttr('prizeGift', true);
             if (prize === 'fs50') openPopupByAttr('prize50FsGateOlymp', true);
+            if (prize === 'points50') openPopupByAttr('50PointsInfo', true);
             if (prize === 'fs25_3oaks') openPopupByAttr('prize25FsLuckyPenny', true);
             if (prize === 'fs25_playson') openPopupByAttr('prize25FsCoinStrike', true);
             if (prize === 'fs40') openPopupByAttr('prize40FsPirots3', true);
@@ -217,6 +220,12 @@
             if (prize === 'fs30') openPopupByAttr('prize30FsShinigCrown', true);
             if (prize === 'fs25_hacksaw') openPopupByAttr('prize25FsLeBandit', true);
             if (prize === 'fs20') openPopupByAttr('prize20FsLuckOfPanda', true);
+
+
+            request(`/favuser/${userId}`).then(user => {
+                setUserProgress(user)
+                displayBetsHistory(user.spins)
+            })
 
 
         })
@@ -345,6 +354,8 @@
     }
 
     function displayBetsHistory(bets) {
+
+        console.log(bets);
         const spinItem = document.querySelector('.spins-row');
         const noSpinItem = document.querySelector('.no-spins');
         const noBets = !bets || bets.length === 0;
@@ -375,7 +386,7 @@
         let upd = 0;
 
         bets.forEach(spin => {
-            const spinDate = new Date(spin.betDate);
+            const spinDate = new Date(spin.date);
             const formattedDate = spinDate.toLocaleDateString('uk-UA').slice(0, 5);
             const status = resolveStatusTranslation(spin.status);
 
@@ -388,7 +399,7 @@
 
                 spinElement.innerHTML = `
                     <span class="content-date">${formattedDate}</span>
-                    <span class="content-prize">ID:${spin.cardID}</span>
+                    <span class="content-prize">${spin.name}</span>
 <!--                    <span class="content-status ${statusClass}"></span>-->
                 `;
                 spinItem.appendChild(spinElement);
@@ -448,11 +459,11 @@
 
                     let tabNum = Number(tab.getAttribute("data-week"))
                     tab.classList.add('active');
-                    // renderUsers(tabNum);
+                    renderUsers(tabNum);
                 });
             })
 
-            // renderUsers(activeWeek)
+            renderUsers(activeWeek)
 
             setTimeout(hideLoader, 1000);
 
@@ -607,11 +618,15 @@
         const loadTime = 200;
         request(`/favuser/${userId}`).then((user) => {
 
+            displayBetsHistory(user.spins)
+
             setTimeout(() => {
                 const showElements = (elements) => elements.forEach(el => el.classList.remove('hide'));
                 const hideElements = (elements) => elements.forEach(el => el.classList.add('hide'));
 
                 dropSpins.classList.add('hide');
+                challangeBtnPointer.classList.add('hide');
+
 
                 if (!userId) {
                     hideElements(participateBtns);
@@ -619,7 +634,6 @@
                     showElements(unauthMsgs);
                     hideLoader();
                     currentCardsWrap.classList.add('_unauth');
-                    challangeBtnPointer.classList.add('hide');
                     return Promise.resolve(false);
                 }else{
                     currentCardsWrap.classList.remove('_unauth');
@@ -632,6 +646,7 @@
                     showElements(redirectBtns);
                     displayBetsHistory(user.spins)
                     setUserProgress(user);
+                    // challangeBtnPointer.classList.remove('hide');
                     dropSpins.classList.remove('hide');
                 } else {
                     showElements(participateBtns);
@@ -714,9 +729,11 @@
         const topUsersLength = !userId || isTopCurrentUser  ? 13 : 10;
         const topUsers = users.slice(0, topUsersLength);
         topUsers.forEach(user => {
+            resultsTableOther.classList.add('hide');
             displayUser(user, user.userid === currentUserId, resultsTable, topUsers, isTopCurrentUser, week);
         });
         if (!isTopCurrentUser && currentUser) {
+            resultsTableOther.classList.remove('hide');
             displayUser(currentUser, true, resultsTableOther, users, false, week);
         }
     }
@@ -728,6 +745,7 @@
             userRow.classList.add('table__row');
 
             const userPlace = users.indexOf(userData) + 1;
+            // const userPlace = 35
             const prizeKey = debug ? null : getPrizeTranslationKey(userPlace, week);
 
             if (userPlace <= 3) {
@@ -755,7 +773,7 @@
                 ${prizeKey ? translateKey(prizeKey) : ' - '}
             </div>
             <div class="table__row-item">
-                ${prizeKey ? translateKey(prizeKey) : ' - '}
+                ${prizeKey ? getWagerByPlace(userPlace) : ' - '}
             </div>
         `;
 
@@ -789,18 +807,53 @@
         return "**" + userId.toString().slice(2);
     }
 
-    function getPrizeTranslationKey(place, week) {
-        if (place <= 3) return `prize_${week}-${place}`;
-        if (place <= 10) return `prize_${week}-4-10`;
-        if (place <= 25) return `prize_${week}-11-25`;
-        if (place <= 50) return `prize_${week}-26-50`;
-        if (place <= 75) return `prize_${week}-51-75`;
-        if (place <= 100) return `prize_${week}-76-100`;
-        if (place <= 125) return `prize_${week}-101-125`;
-        if (place <= 150) return `prize_${week}-126-150`;
-        if (place <= 175) return `prize_${week}-151-175`;
-        if (place <= 200) return `prize_${week}-176-200`;
+    function getPrizeTranslationKey(place) {
+        if (place >= 1 && place <= 10) return `prize_${place}`;
+        if (place >= 11 && place <= 20) return 'prize_11-20';
+        if (place >= 21 && place <= 30) return 'prize_21-30';
+        if (place >= 31 && place <= 40) return 'prize_31-40';
+        if (place >= 41 && place <= 50) return 'prize_41-50';
+        if (place >= 51 && place <= 70) return 'prize_51-70';
+        if (place >= 71 && place <= 100) return 'prize_71-100';
+        if (place >= 101 && place <= 150) return 'prize_101-150';
+        if (place >= 151 && place <= 200) return 'prize_151-200';
+        if (place >= 201 && place <= 250) return 'prize_201-250';
+        if (place >= 251 && place <= 300) return 'prize_251-300';
+        if (place >= 301 && place <= 350) return 'prize_301-350';
+        if (place >= 351 && place <= 400) return 'prize_351-400';
+        if (place >= 401 && place <= 450) return 'prize_401-450';
+        if (place >= 451 && place <= 500) return 'prize_451-500';
+        if (place >= 501 && place <= 550) return 'prize_501-550';
+        if (place >= 551 && place <= 650) return 'prize_551-650';
+        if (place >= 651 && place <= 750) return 'prize_651-750';
+        if (place >= 751 && place <= 850) return 'prize_751-850';
+        if (place >= 851 && place <= 950) return 'prize_851-950';
+        if (place >= 951 && place <= 1000) return 'prize_951-1000';
+        return null;
     }
+
+    function getWagerByPlace(place) {
+        if (place >= 1 && place <= 10) return '-';
+        if (place >= 11 && place <= 20) return 'х1';
+        if (place >= 21 && place <= 30) return 'х1';
+        if (place >= 31 && place <= 40) return 'х2';
+        if (place >= 41 && place <= 50) return 'х2';
+        if (place >= 51 && place <= 70) return 'х3';
+        if (place >= 71 && place <= 100) return 'х3';
+        if (place >= 101 && place <= 150) return 'х4';
+        if (place >= 151 && place <= 200) return 'х4';
+        if (place >= 201 && place <= 250) return 'х5';
+        if (place >= 251 && place <= 300) return 'х5';
+        if (place >= 301 && place <= 350) return 'х6';
+        if (place >= 351 && place <= 400) return 'х7';
+        if (place >= 401 && place <= 450) return 'х8';
+        if (place >= 451 && place <= 500) return 'х9';
+        if (place >= 501 && place <= 550) return 'х10';
+        if (place >= 551 && place <= 1000) return '-';
+        return "-";
+    }
+
+
 
     function participate() {
         if (!userId) {
@@ -971,7 +1024,7 @@
         if(userId){
             sessionStorage.removeItem("userId")
         }else{
-            sessionStorage.setItem("userId", "777777")
+            sessionStorage.setItem("userId", "7777778")
         }
         window.location.reload()
     });
