@@ -88,11 +88,14 @@
         resultsTable = document.querySelector('#table'),
         resultsTableOther = document.querySelector('#tableOther'),
         tableTabs = document.querySelectorAll('.table__tabs-item'),
-        dropSpins = document.querySelector('.drop--spins');
+        dropSpins = document.querySelector('.drop--spins'),
+        lastUpdBlock = document.querySelector('.last-upd');
 
 
     console.log(btnOpen)
 
+
+    let sliderDayIndex = currentDayNumber;
 
 
     const ukLeng = document.querySelector('#ukLeng');
@@ -141,6 +144,20 @@
     let startX = 0;
 
     //slider vars
+
+    function formatDateTimeCustom(isoString) {
+        const date = new Date(isoString);
+
+        const kyivDate = new Date(date.toLocaleString('en-US', { timeZone: 'Europe/Kyiv' }));
+
+        const day = String(kyivDate.getDate()).padStart(2, '0');
+        const month = String(kyivDate.getMonth() + 1).padStart(2, '0');
+        const year = kyivDate.getFullYear();
+        const hours = String(kyivDate.getHours()).padStart(2, '0');
+        const minutes = String(kyivDate.getMinutes()).padStart(2, '0');
+
+        return `${day}.${month}.${year}. ${hours}:${minutes}`;
+    }
 
     const request = function (link, extraOptions) {
         return fetch(apiURL + link, {
@@ -268,6 +285,8 @@
     }
 
     function setUserProgress(userData){
+
+        console.log(userData);
         let spinAllowed = userData.spinAllowed,
             pointsPerDay = userData.pointsPerDay,
             streak = userData.spinsStreak,
@@ -494,7 +513,7 @@
             });
 
 
-            updateSlider();
+            updateSlider(null, sliderDayIndex);
 
             slider.addEventListener('mousedown', handleStart);
             slider.addEventListener('mousemove', handleMove);
@@ -559,7 +578,7 @@
 
         console.log(currentDayNumber)
 
-        function updateSlider(index) {
+        function updateSlider(index, dayIndex) {
             slides.forEach(slide => slide.classList.remove('_active'));
             tabs.forEach(tab => tab.classList.remove('_active'));
             dots.forEach(dot => dot.classList.remove('_active'));
@@ -567,9 +586,12 @@
             slides[index].classList.add('_active');
             tabs[index].classList.add('_active');
             dots[index].classList.add('_active');
+
+            console.log(sliderDayIndex)
+
         }
 
-        updateSlider(currentDayNumber - 1);
+        updateSlider(currentDayNumber - 1, sliderDayIndex);
         tabs.forEach((tab, i) =>{
             if(i + 1 <= currentDayNumber){
                 tab.classList.add('_open');
@@ -587,12 +609,15 @@
 
         function moveLeft() {
             currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            updateSlider(currentIndex);
+            sliderDayIndex = currentIndex
+            console.log(sliderDayIndex)
+            updateSlider(currentIndex , sliderDayIndex);
         }
 
         function moveRight() {
             currentIndex = (currentIndex + 1) % slides.length;
-            updateSlider(currentIndex);
+            sliderDayIndex = currentIndex
+            updateSlider(currentIndex, sliderDayIndex);
         }
 
         btnLeft.addEventListener('click', moveLeft);
@@ -601,14 +626,15 @@
         tabs.forEach((tab, index) => {
             tab.addEventListener('click', () => {
                 currentIndex = index;
-                updateSlider(currentIndex);
+                sliderDayIndex = index
+                updateSlider(currentIndex, sliderDayIndex);
             });
         });
 
         dots.forEach((dot, index) => {
             dot.addEventListener('click', () => {
                 currentIndex = index;
-                updateSlider(currentIndex);
+                updateSlider(currentIndex, sliderDayIndex);
             });
         });
 
@@ -619,6 +645,8 @@
         request(`/favuser/${userId}`).then((user) => {
 
             displayBetsHistory(user.spins)
+
+            lastUpdBlock.textContent = user.lastUpdate ? formatDateTimeCustom(user.lastUpdate) : "--:--"
 
             setTimeout(() => {
                 const showElements = (elements) => elements.forEach(el => el.classList.remove('hide'));
@@ -721,6 +749,7 @@
     }
 
     function populateUsersTable(users, currentUserId, week) {
+        console.log(users);
         resultsTable.innerHTML = '';
         resultsTableOther.innerHTML = '';
         if (!users?.length) return;
@@ -767,7 +796,7 @@
                 ${isCurrentUser && !neighbor ? userData.userid : maskUserId(userData.userid)}
             </div>
             <div class="table__row-item">
-                ${userData.points}
+                ${userData.pointsWeek}
             </div>
             <div class="table__row-item">
                 ${prizeKey ? translateKey(prizeKey) : ' - '}
@@ -926,6 +955,7 @@
         if (dots[currentIndex]) {
             dots[currentIndex].classList.add('_active');
         }
+
     }
 
     function moveSlider(offset) {
