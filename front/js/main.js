@@ -2,7 +2,7 @@
 
     const apiURL = 'https://fav-prom.com/api_sam_ua'
 
-    const currentDate = new Date("2025-07-24T00:00:00");
+    const currentDate = new Date("2025-07-15T00:00:01");
 
     const getActiveWeek = (promoStartDate, weekDuration) => {
 
@@ -35,7 +35,7 @@
         return activeWeekIndex;
     };
 
-    const promoStartDate = new Date("2025-07-15T00:00:00");
+    const promoStartDate = new Date("2025-07-14T00:00:00");
     const weekDuration = 7;
 
     const activeWeek = getActiveWeek(promoStartDate, weekDuration) || 1;
@@ -59,15 +59,22 @@
         if(activeWeek > 1){
            dayNumber = dayNumber - ((activeWeek - 1) * 7);
         }
-        return dayNumber - 1;
+        return dayNumber;
     };
 
     const dayNumber = getCurrentDayNumber(promoStartDate);
     const currentDayNumber = dayNumber > 0 ? dayNumber : 1;
+
+    let activeDayInWeekNumber = getDayNumberInRange(currentDate)
+    let sliderDayInWeekNumber = activeDayInWeekNumber
+
+    console.log(activeDayInWeekNumber)
     console.log(currentDayNumber);
 
 
     const mainPage = document.querySelector(".fav-page"),
+        challange = document.querySelector(".challange"),
+        challangeBtns = challange.querySelectorAll(".btn"),
         challangeBlock = document.querySelector('.challange'),
         challangeDepositBtn = challangeBlock.querySelector('.btn-join'),
         unauthMsgs = document.querySelectorAll('.unauth-msg'),
@@ -240,13 +247,45 @@
 
 
             request(`/favuser/${userId}`).then(user => {
-                setUserProgress(user)
+                setUserProgress(user, activeDayInWeekNumber)
                 displayBetsHistory(user.spins)
             })
 
 
         })
     }
+
+    function setDayNumbersForWeek(tableTabs, promoStartDateStr, currentDateStr) {
+        const promoStartDate = new Date(promoStartDateStr);
+        const currentDate = new Date(currentDateStr);
+        const msPerDay = 1000 * 60 * 60 * 24;
+
+        promoStartDate.setHours(0, 0, 0, 0);
+        currentDate.setHours(0, 0, 0, 0);
+
+        const currentWeekday = currentDate.getDay(); // 0 - неділя, 1 - понеділок ...
+        const offsetToMonday = (currentWeekday + 6) % 7; // скільки днів назад до понеділка
+        const mondayOfCurrentWeek = new Date(currentDate);
+        mondayOfCurrentWeek.setDate(currentDate.getDate() - offsetToMonday);
+
+        for (let i = 0; i < tableTabs.length; i++) {
+            const tabDate = new Date(mondayOfCurrentWeek);
+            tabDate.setDate(mondayOfCurrentWeek.getDate() + i);
+
+            const dayDiff = Math.floor((tabDate - promoStartDate) / msPerDay) + 1;
+
+            const isInRange = dayDiff >= 1 && dayDiff <= 28;
+
+            const challengeTabs = document.querySelectorAll(".challange__tabs-item")
+
+            console.log(isInRange);
+
+            console.log(challengeTabs[i]);
+
+            challengeTabs[i].dataset.dayNum = isInRange ? dayDiff : null;
+        }
+    }
+
 
     function sendSpinRequest() {
         if (!userId) {
@@ -270,43 +309,76 @@
     function setStreakDays(streak) {
         streakDays.forEach((day, i) =>{
             day.classList.remove("_active")
-            console.log(day)
             if(i + 1 <= streak){
                 day.classList.add('_active');
             }
         })
         streakDaysPopup.forEach((day, i) =>{
             day.classList.remove("_active")
-            console.log(day)
             if(i + 1 <= streak){
                 day.classList.add('_active');
             }
         })
     }
 
-    function setUserProgress(userData){
+    function getSlideNumForDays(currentIndex){
+
+
+
+        const newTabs = document.querySelectorAll('.challange__tabs-item');
+
+        setDayNumbersForWeek(newTabs, promoStartDate, currentDate);
+
+        console.log(newTabs);
+
+        let currentSlideDayNum = null
+
+        newTabs.forEach(tab =>{
+            const tabDayNum = Number(tab.getAttribute('data-day-num'));
+
+            console.log(tabDayNum, currentIndex);
+            if(tabDayNum === currentIndex){
+                currentSlideDayNum = tabDayNum
+            }
+        })
+
+        console.log(currentSlideDayNum);
+
+
+        return currentSlideDayNum
+    }
+
+    function setUserProgress(userData, dayNum) {
 
         console.log(userData);
+
         let spinAllowed = userData.spinAllowed,
-            pointsPerDay = userData.pointsPerDay,
+            pastPoits = userData.dayStartPoints,
+            chosedDayPoints = hasPointsForDayNumber(dayNum, pastPoits)?.points ?? 0,
+            isCurrentDay = dayNum === activeDayInWeekNumber,
+            pointsPerDay =  isCurrentDay ? userData.pointsPerDay : chosedDayPoints,
             streak = userData.spinsStreak,
             lastUpdate = userData.lastUpdate
 
-        console.log(streakDays)
 
+        if(!isCurrentDay){
+            console.log(challangeBtns)
+            challangeBtns.forEach(btn => btn.classList.add("_lock"));
+            challangeBtnPointer.classList.add("hide");
+        }
+        if(isCurrentDay){
+            challangeBtns.forEach(btn => btn.classList.remove("_lock"));
+            challangeBtnPointer.classList.remove("hide");
+        }
         setStreakDays(streak)
 
-        // pointsPerDay = 10002
-
         const thresholdPoints = 1000
-
-        console.log(pointsPerDay)
 
         pointsPerDay = pointsPerDay > thresholdPoints ? thresholdPoints : pointsPerDay;
 
         if(!pointsPerDay) pointsPerDay = 0
 
-
+        console.log(pointsPerDay)
 
         counterPoints.textContent = `${pointsPerDay}`
 
@@ -314,9 +386,7 @@
 
         console.log(progress);
 
-
         if (progress >= 100) {
-            progress = 100
             challangeBlur.classList.add('hide')
             progressBox.classList.remove('_lock')
             progressBox.classList.add('_open')
@@ -324,14 +394,12 @@
             btnOpen.classList.remove('hide')
             challangeDepositBtn.classList.add('hide')
         }else{
-            console.log("dsadas")
             challangeBlur.classList.remove('hide')
             progressBox.classList.add('_lock')
             progressBox.classList.remove('_open')
             challangeBtnPointer.classList.add("hide")
             btnOpen.classList.add('hide')
             challangeDepositBtn.classList.remove('hide')
-
 
         }
 
@@ -360,6 +428,57 @@
 
 
     }
+    //
+    // function hasPointsForDayNumber(dayNumber, dayPointsArray) {
+    //     const startDate = new Date('2025-07-14');
+    //     const targetDate = new Date(startDate);
+    //     targetDate.setDate(startDate.getDate() + dayNumber - 1);
+    //     targetDate.setHours(0, 0, 0, 0);
+    //
+    //     return dayPointsArray.some(entry => {
+    //         const entryDate = new Date(entry.date);
+    //         entryDate.setHours(0, 0, 0, 0);
+    //         return entryDate.getTime() === targetDate.getTime();
+    //     });
+    // }
+
+    function hasPointsForDayNumber(dayNumber, dayPointsArray) {
+        const startDate = new Date('2025-07-14');
+        const targetDate = new Date(startDate);
+        targetDate.setDate(startDate.getDate() + dayNumber - 1);
+        targetDate.setHours(0, 0, 0, 0);
+
+        const match = dayPointsArray.find(entry => {
+            const entryDate = new Date(entry.date);
+            entryDate.setHours(0, 0, 0, 0);
+            return entryDate.getTime() === targetDate.getTime();
+        });
+
+        return match || null;
+    }
+
+
+    function getDayNumberInRange(dateStr) {
+        const inputDate = new Date(dateStr);
+        const startDate = new Date('2025-07-14');
+        const endDate = new Date('2025-08-10');
+
+        // Очищаємо час, щоб порівняння було лише по даті
+        inputDate.setHours(0, 0, 0, 0);
+        startDate.setHours(0, 0, 0, 0);
+        endDate.setHours(0, 0, 0, 0);
+
+        if (inputDate < startDate || inputDate > endDate) {
+            return null;
+        }
+
+        const msPerDay = 1000 * 60 * 60 * 24;
+        const dayNumber = Math.floor((inputDate - startDate) / msPerDay) + 1;
+
+        return dayNumber;
+    }
+
+
     function resolveStatusTranslation(status) {
         if (!status || status === 'undefined') {
             return translateKey('betUndefined');
@@ -458,29 +577,11 @@
         function quickCheckAndRender() {
             checkUserAuth();
 
-
-
             // openPopupByAttr("prizeLaptop", true)
 
             btnOpen.addEventListener('click', initSpin);
 
             // setBetHistory()
-
-            tableTabs.forEach((tab, index) => {
-                if(index + 1 === activeWeek){
-                    tab.classList.add('active');
-                }else{
-                    tab.classList.remove('active');
-                }
-                tab.addEventListener('click', () =>{
-                    tableTabs.forEach(t => t.classList.remove('active'));
-                    console.log(tableTabs)
-
-                    let tabNum = Number(tab.getAttribute("data-week"))
-                    tab.classList.add('active');
-                    renderUsers(tabNum);
-                });
-            })
 
             renderUsers(activeWeek)
 
@@ -526,6 +627,17 @@
 
             btnLeft.addEventListener('click', () => moveSlider(-1));
             btnRight.addEventListener('click', () => moveSlider(1));
+
+            tableTabs.forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    let weekNum = Number(tab.getAttribute('data-week'));
+                    tableTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    renderUsers(weekNum)
+                })
+
+            })
+
             // dots.forEach((dot, index) => dot.addEventListener('click', () => goToSlide(index)));
 
 
@@ -610,14 +722,21 @@
         function moveLeft() {
             currentIndex = (currentIndex - 1 + slides.length) % slides.length;
             sliderDayIndex = currentIndex
-            console.log(sliderDayIndex)
             updateSlider(currentIndex , sliderDayIndex);
+            request(`/favuser/${userId}`).then(user => {
+                setUserProgress(user, getSlideNumForDays(currentIndex + 1))
+                displayBetsHistory(user.spins)
+            })
         }
 
         function moveRight() {
             currentIndex = (currentIndex + 1) % slides.length;
             sliderDayIndex = currentIndex
             updateSlider(currentIndex, sliderDayIndex);
+            request(`/favuser/${userId}`).then(user => {
+                setUserProgress(user, getSlideNumForDays(currentIndex + 1))
+                displayBetsHistory(user.spins)
+            })
         }
 
         btnLeft.addEventListener('click', moveLeft);
@@ -628,6 +747,10 @@
                 currentIndex = index;
                 sliderDayIndex = index
                 updateSlider(currentIndex, sliderDayIndex);
+                request(`/favuser/${userId}`).then(user => {
+                    setUserProgress(user, getSlideNumForDays(currentIndex + 1))
+                    displayBetsHistory(user.spins)
+                })
             });
         });
 
@@ -673,7 +796,7 @@
                     hideElements(participateBtns);
                     showElements(redirectBtns);
                     displayBetsHistory(user.spins)
-                    setUserProgress(user);
+                    setUserProgress(user, activeDayInWeekNumber);
                     // challangeBtnPointer.classList.remove('hide');
                     dropSpins.classList.remove('hide');
                 } else {
